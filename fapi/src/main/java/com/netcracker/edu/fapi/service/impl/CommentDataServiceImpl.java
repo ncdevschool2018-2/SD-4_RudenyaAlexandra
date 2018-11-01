@@ -3,7 +3,10 @@ package com.netcracker.edu.fapi.service.impl;
 import com.netcracker.edu.fapi.entity.CommentViewModel;
 import com.netcracker.edu.fapi.service.CommentDataService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class CommentDataServiceImpl implements CommentDataService {
@@ -13,7 +16,9 @@ public class CommentDataServiceImpl implements CommentDataService {
 
     @Override
     public List<CommentViewModel> getAll() {
-
+        RestTemplate restTemplate = new RestTemplate();
+        CommentViewModel[] commentModelResponse = restTemplate.getForObject(backendServerUrl + "/api/comment/", CommentViewModel[].class);
+        return commentModelResponse == null ? Collections.emptyList() : Arrays.asList(commentModelResponse);
     }
 
     @Override
@@ -23,11 +28,13 @@ public class CommentDataServiceImpl implements CommentDataService {
 
     @Override
     public CommentViewModel saveComment(CommentViewModel comment) {
-        return null;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerUrl + "/api/comment", comment, CommentViewModel.class).getBody();
     }
 
     @Override
     public void deleteComment(Long id) {
-
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerUrl + "/api/comment/" + id);
     }
 }
