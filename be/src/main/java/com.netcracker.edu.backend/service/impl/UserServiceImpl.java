@@ -2,7 +2,7 @@ package com.netcracker.edu.backend.service.impl;
 
 import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.repository.UserRepository;
-import com.netcracker.edu.backend.service.UsersService;
+import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,12 +10,12 @@ import java.util.Optional;
 
 
 @Component
-public class UsersServiceImpl implements UsersService {
+public class UserServiceImpl implements UserService {
 
     private UserRepository repository;
 
     @Autowired
-    public UsersServiceImpl(UserRepository repository) {
+    public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
 

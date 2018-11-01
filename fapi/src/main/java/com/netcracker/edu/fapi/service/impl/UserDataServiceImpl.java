@@ -19,12 +19,13 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     public List<UserViewModel> getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        UserViewModel[] usersModelResponce = restTemplate.getForObject(backendServerUrl + "/api/users/", UserViewModel[].class);
-        return usersModelResponce == null ? Collections.emptyList() : Arrays.asList(usersModelResponce);
+        UserViewModel[] userModelResponse = restTemplate.getForObject(backendServerUrl + "/api/users/", UserViewModel[].class);
+        return userModelResponse == null ? Collections.emptyList() : Arrays.asList(userModelResponse);
     }
 
     @Override
     public UserViewModel getUserById(Long id) {
+
         return null;
     }
 

@@ -16,12 +16,13 @@ public class UserDataController {
     private UserDataService usersDataService;
 
     @RequestMapping
-    public ResponseEntity<List<UserViewModel>> getAllUsers() {
+    public ResponseEntity<List<UserViewModel>> getAllUser() {
+
         return ResponseEntity.ok(usersDataService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<UserViewModel> saveUsers(@RequestBody UserViewModel user /*todo server validation*/) {
+    public ResponseEntity<UserViewModel> saveUser(@RequestBody UserViewModel user /*todo server validation*/) {
         if (user != null) {
             return ResponseEntity.ok(usersDataService.saveUser(user));
         }
@@ -29,7 +30,8 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteUsers(@PathVariable String id) {
+    public void deleteUser(@PathVariable String id) {
+
         usersDataService.deleteUser(Long.valueOf(id));
     }
 
