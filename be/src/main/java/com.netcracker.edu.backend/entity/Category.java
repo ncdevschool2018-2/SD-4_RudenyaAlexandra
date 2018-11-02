@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity//Указывает, что данный бин (класс) является сущностью.
-@Table(name = "user")
+@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)

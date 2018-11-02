@@ -37,12 +37,12 @@ public class CategoryController {
     }//ответ
 
     @RequestMapping(method = RequestMethod.POST)//сопоставление запросов
-    public Category saveAccount(@RequestBody Category account){
-        return this.categoryService.saveCategory(account);
+    public Category saveCategory(@RequestBody Category category){
+        return this.categoryService.saveCategory(category);
     }//ответ
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)//сопоставление запросов
-    public ResponseEntity deleteAccountById(@PathVariable(name = "id") Long id){
+    public ResponseEntity deleteCategorytById(@PathVariable(name = "id") Long id){
         this.categoryService.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }//ответ
