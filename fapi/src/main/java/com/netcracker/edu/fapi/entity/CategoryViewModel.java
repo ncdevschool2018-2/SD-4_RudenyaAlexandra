@@ -7,9 +7,6 @@ public class CategoryViewModel {
     private Long category_id;
     private String name_category;
 
-    public CategoryViewModel() {
-    }
-
     public Long getCategory_id() {
         return category_id;
     }
@@ -24,5 +21,8 @@ public class CategoryViewModel {
 
     public void setName_category(String name_category) {
         this.name_category = name_category;
+    }
+
+    public CategoryViewModel() {
     }
 }
