@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default style-nav" >
+    <div class="container" >
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class=" logo navbar-brand">Проект</a>
+      </div>
+  
+      <div class="collapse navbar-collapse"  id="myNavbar">
+        <ul class="nav navbar-nav" >
+          <li *ngFor="let l of links">
+            <a [routerLink]= 'l.url'>{{l.name}}</a>
+          </li>
+          <li><a dropdown>
+              <a dropdownToggle (click)="false"
+                 aria-controls="basic-link-dropdown">Каталог</a>
+              <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
+                  role="menu" aria-labelledby="basic-link">
+                <li *ngFor="let choice of items">
+                  <a class="divider dropdown-divider"></a>
+                  <p class="style-item dropdown-item" routerLink= "/signin">{{choice}}</p>
+                </li>
+              </ul>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+              <a class="style-item" routerLink= "/account">Мой аккаунт</a>
+            <button class = "style-button" routerLink = "/login">Войти</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>

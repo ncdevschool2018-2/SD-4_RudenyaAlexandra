@@ -1,0 +1,17 @@
+    <div class = "container well col-md-3 col-sm-offset-4">
+        <h1 class ="text-style">Вход</h1>
+        <div class="form-group">
+            <label>E-mail</label>
+            <input class="form-control" name="email" [(ngModel)]="editTableUser.email" #email="ngModel"
+                    required />
+        </div>
+        <div class="form-group">
+            <label>Пароль</label>
+            <input class="form-control" name="password" [(ngModel)]="editTableUser.password" #password="ngModel" required/>
+        </div>
+        <button class = "col-md-offset-8 btn btn-link ">Забыли пароль?</button>
+        <div class = "checkbox col-sm-offset-1">
+            <input type="checkbox" checked (change)=  "remember =! remember">Запомнить меня
+        </div>
+        <button class="btn-primary-1" type = "submit" routerLink="/signin" *ngIf = "!remember" routerLinkActive="active">Войти</button>
+    </div>

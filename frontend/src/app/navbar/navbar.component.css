@@ -1,0 +1,60 @@
+.my-project {
+    margin-left: 20px;
+    font-size: 34px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+}
+
+ul.nav li a, ul.nav li a:visited {
+    color: black !important;
+}
+
+ul.nav li a:hover, ul.nav li a:active {
+    color:black !important;
+}
+
+ul.nav li.active a {
+    color: black !important;
+}
+
+.style-item {
+    padding-left: 20px;
+    font-size: 20px;
+    padding-right: 20px;
+}
+.logo {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 34px;
+    padding-right: 30px;
+}
+.style-nav {
+    background-color:rgb(255, 253, 253);
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 26px;
+    margin-bottom: 0;   
+    padding-top: 30px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.2);
+}
+
+.style-button {
+  
+        position: relative;
+        vertical-align: top;
+        width: 100%;
+        font-size: 26px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: black;
+        text-align: center;
+        text-shadow: 0 1px 2px eepskyblue;
+        background: yellow;
+        border: 5px solid yellow;
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+        cursor: pointer;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        font-family: Arial, "Helvetica", sans-serif;
+    
+}
+
+
