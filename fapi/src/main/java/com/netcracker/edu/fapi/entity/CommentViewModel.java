@@ -4,25 +4,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CommentViewModel {
-    private Long category_id;
-    private String name_category;
+    private Long comment_id;
+    private String name;
 
-    public Long getCategory_id() {
-        return category_id;
+    public Long getComment_id() {
+        return comment_id;
     }
 
-    public void setCategory_id(Long category_id) {
-        this.category_id = category_id;
+    public void setComment_id(Long comment_id) {
+        this.comment_id = comment_id;
     }
 
-    public String getName_category() {
-        return name_category;
+    public String getName() {
+        return name;
     }
 
-    public void setName_category(String name_category) {
-        this.name_category = name_category;
-    }
-
-    public CommentViewModel() {
+    public void setName(String name) {
+        this.name = name;
     }
 }

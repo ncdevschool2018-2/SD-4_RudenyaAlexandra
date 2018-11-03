@@ -1,7 +1,7 @@
 package com.netcracker.edu.fapi.service;
 
-import com.netcracker.edu.fapi.entity.CategoryViewModel;
 
+import com.netcracker.edu.fapi.entity.CategoryViewModel;
 import java.util.List;
 
 public interface CategoryDataService {

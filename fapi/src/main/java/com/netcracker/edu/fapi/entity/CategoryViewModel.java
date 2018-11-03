@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CategoryViewModel {
     private Long category_id;
-    private String name_category;
+    private String name;
 
     public Long getCategory_id() {
         return category_id;
@@ -15,14 +15,11 @@ public class CategoryViewModel {
         this.category_id = category_id;
     }
 
-    public String getName_category() {
-        return name_category;
+    public String getName() {
+        return name;
     }
 
-    public void setName_category(String name_category) {
-        this.name_category = name_category;
-    }
-
-    public CategoryViewModel() {
+    public void setName(String name) {
+        this.name = name;
     }
 }

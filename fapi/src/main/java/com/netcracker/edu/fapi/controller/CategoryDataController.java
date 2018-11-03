@@ -2,15 +2,17 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.CategoryViewModel;
 import com.netcracker.edu.fapi.service.CategoryDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/category")
 public class CategoryDataController {
 
+    @Autowired
     private CategoryDataService categoryDataService;
 
     @RequestMapping
@@ -31,6 +33,5 @@ public class CategoryDataController {
     public void deleteCategory(@PathVariable String id) {
         categoryDataService.deleteCategory(Long.valueOf(id));
     }
-
 
 }
