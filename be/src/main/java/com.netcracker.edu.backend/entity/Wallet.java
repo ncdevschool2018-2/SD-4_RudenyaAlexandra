@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "wallet")
+@Table(name = "wallet", schema = "backend")
 public class Wallet {
     @Id
     @Column(name = "wallet_id")
@@ -13,7 +13,7 @@ public class Wallet {
     private Long walletId;
 
     @Column(name = "card_number")
-    private Integer cardNumber;
+    private Long cardNumber;
 
     @Column(name = "CVV")
     private Integer CVV;
@@ -24,8 +24,14 @@ public class Wallet {
     @Column(name = "currency")
     private Integer currency;
 
+    @Column(name = "balance")
+    private Long balance;
+
     @Column(name = "account_id")
     private Long accountId;
+
+    public Wallet() {
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,15 +43,13 @@ public class Wallet {
                 Objects.equals(CVV, wallet.CVV) &&
                 Objects.equals(cardValidityPeriod, wallet.cardValidityPeriod) &&
                 Objects.equals(currency, wallet.currency) &&
+                Objects.equals(balance, wallet.balance) &&
                 Objects.equals(accountId, wallet.accountId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(walletId, cardNumber, CVV, cardValidityPeriod, currency, accountId);
-    }
-
-    public Wallet() {
+        return Objects.hash(walletId, cardNumber, CVV, cardValidityPeriod, currency, balance, accountId);
     }
 
     public Long getWalletId() {
@@ -56,11 +60,11 @@ public class Wallet {
         this.walletId = walletId;
     }
 
-    public Integer getCardNumber() {
+    public Long getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(Integer cardNumber) {
+    public void setCardNumber(Long cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -86,6 +90,14 @@ public class Wallet {
 
     public void setCurrency(Integer currency) {
         this.currency = currency;
+    }
+
+    public Long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Long balance) {
+        this.balance = balance;
     }
 
     public Long getAccountId() {
