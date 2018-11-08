@@ -8,7 +8,7 @@ public class FeatureViewModel {
     private String title;
     private Integer cost;
     private Integer days;
-    private Long subscribe_id;
+    private SubscribeViewModel subscribe_id;
 
     public FeatureViewModel() {
     }
@@ -45,11 +45,11 @@ public class FeatureViewModel {
         this.days = days;
     }
 
-    public Long getSubscribe_id() {
+    public SubscribeViewModel getSubscribe_id() {
         return subscribe_id;
     }
 
-    public void setSubscribe_id(Long subscribe_id) {
+    public void setSubscribe_id(SubscribeViewModel subscribe_id) {
         this.subscribe_id = subscribe_id;
     }
 }

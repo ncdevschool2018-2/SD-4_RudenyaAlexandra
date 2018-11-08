@@ -11,15 +11,15 @@ export class CategoryService {
 
     constructor(private http: HttpClient) {}
 
-    getUser(): Observable<Category[]> {
+    getCategory(): Observable<Category[]> {
         return this.http.get<Category[]>('/api/category');
     }
 
-    saveUser(category: Category): Observable<Category> {
+    saveCategory(category: Category): Observable<Category> {
         return this.http.post<Category>('/api/category', category);
     }
 
-    deleteUser(category_id: string): Observable<void> {
+    deleteCategory(category_id: number): Observable<void> {
         return this.http.delete<void>('/api/category/' + category_id);
     }
 }

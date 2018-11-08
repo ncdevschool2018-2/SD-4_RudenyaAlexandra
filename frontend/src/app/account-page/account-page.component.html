@@ -1,2 +1,15 @@
-<app-menu-account></app-menu-account>
-<app-subscribe></app-subscribe>
+<app-menu-account (linkComponent) = "linkNumber($event)"></app-menu-account>
+<div *ngIf = "( parametr == 'subscription')">
+    <app-user-info></app-user-info>
+    <app-subscribe></app-subscribe>
+</div>
+<div *ngIf = "( parametr == 'balance')">
+    <app-wallet></app-wallet>
+</div>
+<div *ngIf = "( parametr == 'comment')">
+    <app-user-info></app-user-info>
+    <app-comment-user></app-comment-user>
+</div>
+<div *ngIf = "( parametr == 'users')">
+    <app-user-account-admin></app-user-account-admin>
+</div>

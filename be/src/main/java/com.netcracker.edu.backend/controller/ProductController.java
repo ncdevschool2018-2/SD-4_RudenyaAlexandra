@@ -15,8 +15,8 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    public ProductController(ProductService commentService){
-        this.productService = commentService;
+    public ProductController(ProductService productService){
+        this.productService = productService;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)//сопоставление запросов

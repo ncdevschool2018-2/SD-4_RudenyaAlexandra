@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.netcracker.edu.fapi.service.ProductDataService;
 
 import java.sql.Date;
 
@@ -9,8 +10,8 @@ public class SubscribeViewModel {
     private Long subscribe_id;
     private Date start_date;
     private Date end_date;
-    private Integer product_id;
-    private Integer account_id;
+    private ProductViewModel product_id;
+    private AccountViewModel account_id;
 
     public SubscribeViewModel() {
     }
@@ -39,19 +40,19 @@ public class SubscribeViewModel {
         this.end_date = end_date;
     }
 
-    public Integer getProduct_id() {
+    public ProductViewModel getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(Integer product_id) {
+    public void setProduct_id(ProductViewModel product_id) {
         this.product_id = product_id;
     }
 
-    public Integer getAccount_id() {
+    public AccountViewModel getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(Integer account_id) {
+    public void setAccount_id(AccountViewModel account_id) {
         this.account_id = account_id;
     }
 }

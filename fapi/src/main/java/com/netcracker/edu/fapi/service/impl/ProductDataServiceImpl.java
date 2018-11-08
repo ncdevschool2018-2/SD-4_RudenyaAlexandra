@@ -26,6 +26,15 @@ public class ProductDataServiceImpl implements ProductDataService {
     @Override
     public ProductViewModel getProductById(Long id) {
 
+        RestTemplate restTemplate = new RestTemplate();
+        ProductViewModel[] productViewModels = restTemplate.getForObject(backendServerUrl + "/api/product/", ProductViewModel[].class);
+
+        if (productViewModels != null) {
+            for (ProductViewModel productViewModel : productViewModels) {
+                if (productViewModel.getProduct_id() == id)
+                    return productViewModel;
+            }
+        }
         return null;
     }
 

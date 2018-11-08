@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default style-nav" >
-    <div class="container" >
+    <div class="container-fluid" >
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
@@ -21,7 +21,7 @@
                   role="menu" aria-labelledby="basic-link">
                 <li *ngFor="let choice of items">
                   <a class="divider dropdown-divider"></a>
-                  <p class="style-item dropdown-item" routerLink= "/signin">{{choice}}</p>
+                  <a class="style-item dropdown-item" routerLink = "/product" >{{choice}}</a>
                 </li>
               </ul>
             </a>
@@ -29,8 +29,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-              <a class="style-item" routerLink= "/account">Мой аккаунт</a>
-            <button class = "style-button" routerLink = "/login">Войти</button></li>
+            <a  routerLink= "/account" class="style-item account"  *ngIf = "( role == 'user' )">Мой аккаунт</a>
+            <a  routerLink= "/account" *ngIf = "( role == 'admin' )" class="style-item account" >Администратор</a>
+            <button *ngIf = "( role == null )" class = "style-button" routerLink = "/login">Войти</button></li>
         </ul>
       </div>
     </div>

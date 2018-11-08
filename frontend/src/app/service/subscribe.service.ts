@@ -11,15 +11,15 @@ export class SubscribeService {
 
     constructor(private http: HttpClient) {}
 
-    getUser(): Observable<Subscribe[]> {
+    getSubscribe(): Observable<Subscribe[]> {
         return this.http.get<Subscribe[]>('/api/subscribe');
     }
 
-    saveUser(subscribe: Subscribe): Observable<Subscribe> {
+    saveSubscribe(subscribe: Subscribe): Observable<Subscribe> {
         return this.http.post<Subscribe>('/api/subscribe', subscribe);
     }
 
-    deleteUser(subscribe_id: string): Observable<void> {
+    deleteSubscribe(subscribe_id: number): Observable<void> {
         return this.http.delete<void>('/api/subscribe/' + subscribe_id);
     }
 }

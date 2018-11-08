@@ -13,6 +13,7 @@ interface Link {
 // спросить про output и input
 export class NavbarComponent implements OnInit {
 
+    role = 'user';
     links: Link[] = [
         {name: 'Главная', url: '/home'},
     ];

@@ -25,6 +25,15 @@ public class CategoryDataServiceImpl implements CategoryDataService {
 
     @Override
     public CategoryViewModel getCategoryById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        CategoryViewModel[] categoryViewModels = restTemplate.getForObject(backendServerUrl + "/api/category/", CategoryViewModel[].class);
+
+        if (categoryViewModels != null) {
+            for (CategoryViewModel categoryViewModel : categoryViewModels) {
+                if (categoryViewModel.getCategory_id() == id)
+                    return categoryViewModel;
+            }
+        }
         return null;
     }
 
@@ -37,6 +46,6 @@ public class CategoryDataServiceImpl implements CategoryDataService {
     @Override
     public void deleteCategory(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "/api/category" + id);
+        restTemplate.delete(backendServerUrl + "/api/category/" + id);
     }
 }

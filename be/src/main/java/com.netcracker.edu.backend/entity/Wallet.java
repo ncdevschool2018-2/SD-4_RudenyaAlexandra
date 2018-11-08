@@ -10,16 +10,16 @@ public class Wallet {
     @Id
     @Column(name = "wallet_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long walletId;
+    private Long wallet_id;
 
     @Column(name = "card_number")
-    private Long cardNumber;
+    private Long card_number;
 
     @Column(name = "CVV")
     private Integer CVV;
 
     @Column(name = "card_validity_period")
-    private Date cardValidityPeriod;
+    private String card_validity_period;
 
     @Column(name = "currency")
     private Integer currency;
@@ -27,45 +27,46 @@ public class Wallet {
     @Column(name = "balance")
     private Long balance;
 
-    @Column(name = "account_id")
-    private Long accountId;
-
-    public Wallet() {
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account_id;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Wallet wallet = (Wallet) o;
-        return Objects.equals(walletId, wallet.walletId) &&
-                Objects.equals(cardNumber, wallet.cardNumber) &&
+        return Objects.equals(wallet_id, wallet.wallet_id) &&
+                Objects.equals(card_number, wallet.card_number) &&
                 Objects.equals(CVV, wallet.CVV) &&
-                Objects.equals(cardValidityPeriod, wallet.cardValidityPeriod) &&
+                Objects.equals(card_validity_period, wallet.card_validity_period) &&
                 Objects.equals(currency, wallet.currency) &&
                 Objects.equals(balance, wallet.balance) &&
-                Objects.equals(accountId, wallet.accountId);
+                Objects.equals(account_id, wallet.account_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(walletId, cardNumber, CVV, cardValidityPeriod, currency, balance, accountId);
+        return Objects.hash(wallet_id, card_number, CVV, card_validity_period, currency, balance, account_id);
     }
 
-    public Long getWalletId() {
-        return walletId;
+    public Wallet() {
     }
 
-    public void setWalletId(Long walletId) {
-        this.walletId = walletId;
+    public Long getWallet_id() {
+        return wallet_id;
     }
 
-    public Long getCardNumber() {
-        return cardNumber;
+    public void setWallet_id(Long wallet_id) {
+        this.wallet_id = wallet_id;
     }
 
-    public void setCardNumber(Long cardNumber) {
-        this.cardNumber = cardNumber;
+    public Long getCard_number() {
+        return card_number;
+    }
+
+    public void setCard_number(Long card_number) {
+        this.card_number = card_number;
     }
 
     public Integer getCVV() {
@@ -76,12 +77,12 @@ public class Wallet {
         this.CVV = CVV;
     }
 
-    public Date getCardValidityPeriod() {
-        return cardValidityPeriod;
+    public String getCard_validity_period() {
+        return card_validity_period;
     }
 
-    public void setCardValidityPeriod(Date cardValidityPeriod) {
-        this.cardValidityPeriod = cardValidityPeriod;
+    public void setCard_validity_period(String card_validity_period) {
+        this.card_validity_period = card_validity_period;
     }
 
     public Integer getCurrency() {
@@ -100,11 +101,11 @@ public class Wallet {
         this.balance = balance;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public Account getAccount_id() {
+        return account_id;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccount_id(Account account_id) {
+        this.account_id = account_id;
     }
 }

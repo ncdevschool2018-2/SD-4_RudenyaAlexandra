@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {User} from '../model/user';
 import { UserService } from '../service/user.service';
 import { Subscription } from 'rxjs/internal/Subscription';
-import {BsModalRef} from 'ngx-bootstrap';
 
 @Component({
     selector: 'app-signin-page',
@@ -10,14 +9,13 @@ import {BsModalRef} from 'ngx-bootstrap';
     styleUrls: ['./signin-page.component.css']
 })
 
-export class SigninComponent implements OnInit {
+export class SigninComponent implements OnInit, OnDestroy {
 
   passwordRepeat: string;
   public editMode = false;
 
   public editTableUser: User = new User();
   public userAccount: User[];
-  public modalRef: BsModalRef;
 
   private subscriptions: Subscription[] = [];
 
@@ -62,7 +60,6 @@ export class SigninComponent implements OnInit {
     }));
   }
 
-  // tslint:disable-next-line:use-life-cycle-interface
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription =>
       subscription.unsubscribe());

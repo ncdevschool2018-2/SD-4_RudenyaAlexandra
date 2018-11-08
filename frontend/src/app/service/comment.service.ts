@@ -11,15 +11,15 @@ export class CommentService {
 
     constructor(private http: HttpClient) {}
 
-    getUser(): Observable<Comment[]> {
+    getComment(): Observable<Comment[]> {
         return this.http.get<Comment[]>('/api/comment');
     }
 
-    saveUser(comment: Comment): Observable<Comment> {
+    saveComment(comment: Comment): Observable<Comment> {
         return this.http.post<Comment>('/api/comment', comment);
     }
 
-    deleteUser(comment_id: string): Observable<void> {
+    deleteComment(comment_id: string): Observable<void> {
         return this.http.delete<void>('/api/comment/' + comment_id);
     }
 }

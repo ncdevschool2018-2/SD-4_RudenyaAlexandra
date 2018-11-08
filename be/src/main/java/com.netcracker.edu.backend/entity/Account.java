@@ -10,70 +10,23 @@ public class Account {
     @Id
     @Column(name = "account_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long account_id;
 
     @Column(name = "last_name")
-    private String lastName;
+    private String last_name;
 
     @Column(name = "first_name")
-    private String firstName;
+    private String first_name;
 
     @Column(name = "registration_date")
-    private  Date registrationDate;
+    private  String registration_date;
 
     @Column(name = "image_profile")
-    private String imageProfile;
+    private String image_profile;
 
-    @Column(name = "user_id")
-    private Long user_id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public String getImageProfile() {
-        return imageProfile;
-    }
-
-    public void setImageProfile(String imageProfile) {
-        this.imageProfile = imageProfile;
-    }
-
-    public Long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user_id;
 
     public Account() {
     }
@@ -83,16 +36,64 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(id, account.id) &&
-                Objects.equals(lastName, account.lastName) &&
-                Objects.equals(firstName, account.firstName) &&
-                Objects.equals(registrationDate, account.registrationDate) &&
-                Objects.equals(imageProfile, account.imageProfile) &&
+        return Objects.equals(account_id, account.account_id) &&
+                Objects.equals(last_name, account.last_name) &&
+                Objects.equals(first_name, account.first_name) &&
+                Objects.equals(registration_date, account.registration_date) &&
+                Objects.equals(image_profile, account.image_profile) &&
                 Objects.equals(user_id, account.user_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, registrationDate, imageProfile, user_id);
+        return Objects.hash(account_id, last_name, first_name, registration_date, image_profile, user_id);
+    }
+
+    public Long getAccount_id() {
+        return account_id;
+    }
+
+    public void setAccount_id(Long account_id) {
+        this.account_id = account_id;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getRegistration_date() {
+        return registration_date;
+    }
+
+    public void setRegistration_date(String registration_date) {
+        this.registration_date = registration_date;
+    }
+
+    public String getImage_profile() {
+        return image_profile;
+    }
+
+    public void setImage_profile(String image_profile) {
+        this.image_profile = image_profile;
+    }
+
+    public User getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
     }
 }

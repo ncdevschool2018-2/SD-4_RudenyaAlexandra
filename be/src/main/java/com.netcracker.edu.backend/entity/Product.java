@@ -10,7 +10,7 @@ public class Product {
     @Id
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long product_id;
 
     @Column(name = "name")
     private String name;
@@ -27,18 +27,44 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "type_id")
-    private Long type_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category category_id;
 
-    @Column(name = "comment_id")
-    private Long comment_id;
 
-    public Long getId() {
-        return id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "comment_id")
+    private Comment comment_id;
+
+    public Product() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(product_id, product.product_id) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(cost, product.cost) &&
+                Objects.equals(long_description, product.long_description) &&
+                Objects.equals(short_description, product.short_description) &&
+                Objects.equals(image, product.image) &&
+                Objects.equals(category_id, product.category_id) &&
+                Objects.equals(comment_id, product.comment_id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product_id, name, cost, long_description, short_description, image, category_id, comment_id);
+    }
+
+    public Long getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Long product_id) {
+        this.product_id = product_id;
     }
 
     public String getName() {
@@ -81,42 +107,19 @@ public class Product {
         this.image = image;
     }
 
-    public Long getType_id() {
-        return type_id;
+    public Category getCategory_id() {
+        return category_id;
     }
 
-    public void setType_id(Long type_id) {
-        this.type_id = type_id;
+    public void setCategory_id(Category category_id) {
+        this.category_id = category_id;
     }
 
-    public Long getComment_id() {
+    public Comment getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(Long comment_id) {
+    public void setComment_id(Comment comment_id) {
         this.comment_id = comment_id;
-    }
-
-    public Product() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) &&
-                Objects.equals(name, product.name) &&
-                Objects.equals(cost, product.cost) &&
-                Objects.equals(long_description, product.long_description) &&
-                Objects.equals(short_description, product.short_description) &&
-                Objects.equals(image, product.image) &&
-                Objects.equals(type_id, product.type_id) &&
-                Objects.equals(comment_id, product.comment_id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, cost, long_description, short_description, image, type_id, comment_id);
     }
 }

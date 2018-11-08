@@ -26,6 +26,15 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     public UserViewModel getUserById(Long id) {
 
+        RestTemplate restTemplate = new RestTemplate();
+        UserViewModel[] userViewModels = restTemplate.getForObject(backendServerUrl + "/api/users/", UserViewModel[].class);
+
+        if (userViewModels != null) {
+            for (UserViewModel userViewModel : userViewModels) {
+                if (userViewModel.getUser_id() == id)
+                    return userViewModel;
+            }
+        }
         return null;
     }
 

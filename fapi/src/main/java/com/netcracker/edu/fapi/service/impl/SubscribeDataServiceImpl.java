@@ -26,6 +26,15 @@ public class SubscribeDataServiceImpl implements SubscribeDataService {
     @Override
     public SubscribeViewModel getSubscribeById(Long id) {
 
+        RestTemplate restTemplate = new RestTemplate();
+        SubscribeViewModel[] subscribeViewModels = restTemplate.getForObject(backendServerUrl + "/api/subscribe/", SubscribeViewModel[].class);
+
+        if (subscribeViewModels != null) {
+            for (SubscribeViewModel subscribeViewModel : subscribeViewModels) {
+                if (subscribeViewModel.getSubscribe_id() == id)
+                    return subscribeViewModel;
+            }
+        }
         return null;
     }
 

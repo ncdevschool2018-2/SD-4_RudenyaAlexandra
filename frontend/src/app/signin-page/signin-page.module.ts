@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    SigninComponent
+    SigninComponent,
   ],
   imports: [
     ButtonsModule.forRoot(), BrowserModule, FormsModule

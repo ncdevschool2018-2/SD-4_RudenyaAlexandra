@@ -10,8 +10,8 @@ public class ProductViewModel {
     private String long_description;
     private String short_description;
     private String image;
-    private Integer type_id;
-    private Integer comment_id;
+    private CategoryViewModel category_id;
+    private CommentViewModel comment_id;
 
     public ProductViewModel() {
     }
@@ -64,19 +64,19 @@ public class ProductViewModel {
         this.image = image;
     }
 
-    public Integer getType_id() {
-        return type_id;
+    public CategoryViewModel getCategory_id() {
+        return category_id;
     }
 
-    public void setType_id(Integer type_id) {
-        this.type_id = type_id;
+    public void setCategory_id(CategoryViewModel category_id) {
+        this.category_id = category_id;
     }
 
-    public Integer getComment_id() {
+    public CommentViewModel getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(Integer comment_id) {
+    public void setComment_id(CommentViewModel comment_id) {
         this.comment_id = comment_id;
     }
 }

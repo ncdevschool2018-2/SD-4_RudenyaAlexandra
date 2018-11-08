@@ -26,6 +26,15 @@ public class FeatureDataServiceImpl implements FeatureDataService {
     @Override
     public FeatureViewModel getFeatureById(Long id) {
 
+        RestTemplate restTemplate = new RestTemplate();
+        FeatureViewModel[] featureViewModels = restTemplate.getForObject(backendServerUrl + "/api/feature/", FeatureViewModel[].class);
+
+        if (featureViewModels != null) {
+            for (FeatureViewModel featureViewModel : featureViewModels) {
+                if (featureViewModel.getFeature_id() == id)
+                    return featureViewModel;
+            }
+        }
         return null;
     }
 

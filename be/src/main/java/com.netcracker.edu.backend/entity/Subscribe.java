@@ -10,7 +10,7 @@ public class Subscribe {
     @Id
     @Column(name = "subscribe_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long subscribe_id;
 
     @Column(name = "start_date")
     private Date start_date;
@@ -18,18 +18,23 @@ public class Subscribe {
     @Column(name = "end_date")
     private Date end_date;
 
-    @Column(name = "product_id")
-    private Long product_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product_id;
 
-    @Column(name = "account_id")
-    private Long account_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account_id;
 
-    public Long getId() {
-        return id;
+    public Subscribe() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getSubscribe_id() {
+        return subscribe_id;
+    }
+
+    public void setSubscribe_id(Long subscribe_id) {
+        this.subscribe_id = subscribe_id;
     }
 
     public Date getStart_date() {
@@ -48,23 +53,20 @@ public class Subscribe {
         this.end_date = end_date;
     }
 
-    public Long getProduct_id() {
+    public Product getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(Long product_id) {
+    public void setProduct_id(Product product_id) {
         this.product_id = product_id;
     }
 
-    public Long getAccount_id() {
+    public Account getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(Long account_id) {
+    public void setAccount_id(Account account_id) {
         this.account_id = account_id;
-    }
-
-    public Subscribe() {
     }
 
     @Override
@@ -72,7 +74,7 @@ public class Subscribe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscribe subscribe = (Subscribe) o;
-        return Objects.equals(id, subscribe.id) &&
+        return Objects.equals(subscribe_id, subscribe.subscribe_id) &&
                 Objects.equals(start_date, subscribe.start_date) &&
                 Objects.equals(end_date, subscribe.end_date) &&
                 Objects.equals(product_id, subscribe.product_id) &&
@@ -81,6 +83,6 @@ public class Subscribe {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, start_date, end_date, product_id, account_id);
+        return Objects.hash(subscribe_id, start_date, end_date, product_id, account_id);
     }
 }

@@ -21,8 +21,9 @@ public class Feature {
     @Column(name = "days")
     private  Integer days;
 
-    @Column(name = "subscribe_id")
-    private Long subscribe_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subscribe_id")
+    private Subscribe subscribe_id;
 
     public Long getFeature_id() {
         return feature_id;
@@ -56,11 +57,11 @@ public class Feature {
         this.days = days;
     }
 
-    public Long getSubscribe_id() {
+    public Subscribe getSubscribe_id() {
         return subscribe_id;
     }
 
-    public void setSubscribe_id(Long subscribe_id) {
+    public void setSubscribe_id(Subscribe subscribe_id) {
         this.subscribe_id = subscribe_id;
     }
 

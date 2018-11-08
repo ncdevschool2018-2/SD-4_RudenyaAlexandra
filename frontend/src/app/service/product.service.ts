@@ -11,15 +11,15 @@ export class ProductService {
 
     constructor(private http: HttpClient) {}
 
-    getUser(): Observable<Product[]> {
+    getProduct(): Observable<Product[]> {
         return this.http.get<Product[]>('/api/product');
     }
 
-    saveUser(product: Product): Observable<Product> {
+    saveProduct(product: Product): Observable<Product> {
         return this.http.post<Product>('/api/product', product);
     }
 
-    deleteUser(product_id: string): Observable<void> {
+    deleteProduct(product_id: number): Observable<void> {
         return this.http.delete<void>('/api/product/' + product_id);
     }
 }

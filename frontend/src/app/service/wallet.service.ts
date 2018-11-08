@@ -11,15 +11,15 @@ export class WalletService {
 
     constructor(private http: HttpClient) {}
 
-    getUser(): Observable<Wallet[]> {
+    getWallet(): Observable<Wallet[]> {
         return this.http.get<Wallet[]>('/api/wallet');
     }
 
-    saveUser(wallet: Wallet): Observable<Wallet> {
+    saveWallet(wallet: Wallet): Observable<Wallet> {
         return this.http.post<Wallet>('/api/wallet', wallet);
     }
 
-    deleteUser(wallet_id: string): Observable<void> {
+    deleteWallet(wallet_id: string): Observable<void> {
         return this.http.delete<void>('/api/wallet/' + wallet_id);
     }
 }

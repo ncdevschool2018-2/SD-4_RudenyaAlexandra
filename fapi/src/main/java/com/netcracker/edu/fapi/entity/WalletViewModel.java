@@ -9,10 +9,10 @@ public class WalletViewModel {
     private Long wallet_id;
     private Long card_number;
     private Integer CVV;
-    private Date card_validity_period;
+    private String card_validity_period;
     private Integer currency;
     private Long balance;
-    private Integer account_id;
+    private AccountViewModel account_id;
 
     public WalletViewModel() {
     }
@@ -41,11 +41,11 @@ public class WalletViewModel {
         this.CVV = CVV;
     }
 
-    public Date getCard_validity_period() {
+    public String getCard_validity_period() {
         return card_validity_period;
     }
 
-    public void setCard_validity_period(Date card_validity_period) {
+    public void setCard_validity_period(String card_validity_period) {
         this.card_validity_period = card_validity_period;
     }
 
@@ -65,11 +65,11 @@ public class WalletViewModel {
         this.balance = balance;
     }
 
-    public Integer getAccount_id() {
+    public AccountViewModel getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(Integer account_id) {
+    public void setAccount_id(AccountViewModel account_id) {
         this.account_id = account_id;
     }
 }
