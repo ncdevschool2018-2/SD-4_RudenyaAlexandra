@@ -29,7 +29,7 @@ public class WalletDataServiceImpl implements WalletDataService {
         WalletViewModel[] walletViewModels = restTemplate.getForObject(backendServerUrl + "/api/wallet/", WalletViewModel[].class);
         if (walletViewModels != null) {
             for (WalletViewModel walletViewModel : walletViewModels) {
-                if (walletViewModel.getWallet_id() == id)
+                if (walletViewModel.getWalletId() == id)
                     return walletViewModel;
             }
         }

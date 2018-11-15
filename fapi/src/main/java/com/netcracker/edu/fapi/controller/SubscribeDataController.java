@@ -21,6 +21,11 @@ public class SubscribeDataController {
         return ResponseEntity.ok(subscribeDataService.getAll());
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<SubscribeViewModel> getSubscribeById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(subscribeDataService.getSubscribeById(id));
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<SubscribeViewModel> saveSubscribe(@RequestBody SubscribeViewModel subscribe /*todo server validation*/) {
         if (subscribe != null) {

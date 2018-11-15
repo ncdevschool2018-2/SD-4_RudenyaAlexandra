@@ -19,7 +19,11 @@ export class FeatureService {
         return this.http.post<Feature>('/api/feature', feature);
     }
 
-    deleteFeature(feature_id: string): Observable<void> {
+    deleteFeature(feature_id: number): Observable<void> {
         return this.http.delete<void>('/api/feature/' + feature_id);
+    }
+
+    getFeatureById(featureId: number): Observable<Feature[]> {
+        return this.http.get<Feature[]>('api/feature/' + featureId);
     }
 }

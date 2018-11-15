@@ -1,7 +1,6 @@
 package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.AccountViewModel;
-import com.netcracker.edu.fapi.entity.UserViewModel;
 import com.netcracker.edu.fapi.service.AccountDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +21,10 @@ public class AccountDataController {
         return ResponseEntity.ok(accountDataService.getAll());
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<AccountViewModel> getAccountById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(accountDataService.getAccountById(id));
+    }
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<AccountViewModel> saveAccount(@RequestBody AccountViewModel account /*todo server validation*/) {
         if (account != null) {

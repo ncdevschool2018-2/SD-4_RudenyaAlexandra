@@ -17,8 +17,12 @@ public class ProductDataController {
 
     @RequestMapping
     public ResponseEntity<List<ProductViewModel>> getAllProduct() {
-
         return ResponseEntity.ok(productDataService.getAll());
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ProductViewModel> getProductById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(productDataService.getProductById(id));
     }
 
     @RequestMapping(method = RequestMethod.POST)

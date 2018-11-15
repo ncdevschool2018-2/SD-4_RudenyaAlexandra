@@ -30,7 +30,7 @@ public class CommentDataServiceImpl implements CommentDataService {
 
         if (commentViewModels != null) {
             for (CommentViewModel commentViewModel : commentViewModels) {
-                if (commentViewModel.getComment_id() == id)
+                if (commentViewModel.getCommentId() == id)
                     return commentViewModel;
             }
         }

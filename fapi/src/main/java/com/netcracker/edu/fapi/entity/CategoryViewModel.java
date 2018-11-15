@@ -4,22 +4,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CategoryViewModel {
-    private Long category_id;
-    private String name_category;
+    private Long categoryId;
+    private String nameCategory;
 
-    public Long getCategory_id() {
-        return category_id;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(Long category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getName_category() {
-        return name_category;
+    public String getNameCategory() {
+        return nameCategory;
     }
 
-    public void setName_category(String name_category) {
-        this.name_category = name_category;
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 }

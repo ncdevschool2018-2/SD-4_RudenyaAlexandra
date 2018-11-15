@@ -1,5 +1,7 @@
 package com.netcracker.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,9 +9,9 @@ import java.util.Objects;
 @Table(name = "user")
 public class User {
     @Id
-    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "login")
     private String login;
@@ -20,21 +22,54 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Account account;
+
     public User() {
     }
 
-    public User(String login, String password, String role) {
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", account=" + account +
+                '}';
+    }
+
+    public User(String login, String password, String role, Account account) {
         this.login = login;
         this.password = password;
         this.role = role;
+        this.account = account;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role) &&
+                Objects.equals(account, user.account);
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, login, password, role, account);
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getLogin() {
@@ -61,29 +96,11 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(user_id, user.user_id) &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(role, user.role);
+    public Account getAccount() {
+        return account;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(user_id, login, password, role);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + user_id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

@@ -5,20 +5,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserViewModel {
 
-    private Long user_id;
+    private Long userId;
     private String login;
     private String password;
     private String role;
+    private AccountViewModel account;
 
     public UserViewModel() {
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public AccountViewModel getAccount() {
+        return account;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setAccount(AccountViewModel account) {
+        this.account = account;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getLogin() {

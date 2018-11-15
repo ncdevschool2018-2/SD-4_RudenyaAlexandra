@@ -21,6 +21,10 @@ public class FeatureDataController {
         return ResponseEntity.ok(featureDataService.getAll());
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<FeatureViewModel> getFeatureById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(featureDataService.getFeatureById(id));
+    }
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<FeatureViewModel> saveFeature(@RequestBody FeatureViewModel feature /*todo server validation*/) {
         if (feature != null) {

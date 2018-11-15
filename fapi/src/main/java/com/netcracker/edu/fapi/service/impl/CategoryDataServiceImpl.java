@@ -30,7 +30,7 @@ public class CategoryDataServiceImpl implements CategoryDataService {
 
         if (categoryViewModels != null) {
             for (CategoryViewModel categoryViewModel : categoryViewModels) {
-                if (categoryViewModel.getCategory_id() == id)
+                if (categoryViewModel.getCategoryId() == id)
                     return categoryViewModel;
             }
         }

@@ -6,31 +6,31 @@ import java.sql.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WalletViewModel {
-    private Long wallet_id;
-    private Long card_number;
+    private Long walletId;
+    private Long cardNumber;
     private Integer CVV;
-    private String card_validity_period;
+    private String cardValidityPeriod;
     private Integer currency;
     private Long balance;
-    private AccountViewModel account_id;
+    private Long accountId;
 
     public WalletViewModel() {
     }
 
-    public Long getWallet_id() {
-        return wallet_id;
+    public Long getWalletId() {
+        return walletId;
     }
 
-    public void setWallet_id(Long wallet_id) {
-        this.wallet_id = wallet_id;
+    public void setWalletId(Long walletId) {
+        this.walletId = walletId;
     }
 
-    public Long getCard_number() {
-        return card_number;
+    public Long getCardNumber() {
+        return cardNumber;
     }
 
-    public void setCard_number(Long card_number) {
-        this.card_number = card_number;
+    public void setCardNumber(Long cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public Integer getCVV() {
@@ -41,12 +41,12 @@ public class WalletViewModel {
         this.CVV = CVV;
     }
 
-    public String getCard_validity_period() {
-        return card_validity_period;
+    public String getCardValidityPeriod() {
+        return cardValidityPeriod;
     }
 
-    public void setCard_validity_period(String card_validity_period) {
-        this.card_validity_period = card_validity_period;
+    public void setCardValidityPeriod(String cardValidityPeriod) {
+        this.cardValidityPeriod = cardValidityPeriod;
     }
 
     public Integer getCurrency() {
@@ -65,11 +65,11 @@ public class WalletViewModel {
         this.balance = balance;
     }
 
-    public AccountViewModel getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setAccount_id(AccountViewModel account_id) {
-        this.account_id = account_id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

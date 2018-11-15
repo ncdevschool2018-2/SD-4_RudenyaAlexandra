@@ -1,34 +1,73 @@
 package com.netcracker.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
-import java.sql.Date;
 
 @Entity
 @Table(name = "account", schema = "backend")
 public class Account {
     @Id
-    @Column(name = "account_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long account_id;
+    @Column(name = "account_id")
+    private Long accountId;
 
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "registration_date")
-    private  String registration_date;
+    private  String registrationDate;
 
     @Column(name = "image_profile")
-    private String image_profile;
+    private String imageProfile;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user_id;
+    @JsonBackReference
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private List<Wallet> wallets;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subscribe_id")
+    private List<Subscribe> subscriptions;
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", registrationDate='" + registrationDate + '\'' +
+                ", imageProfile='" + imageProfile + '\'' +
+                ", user=" + user +
+                ", wallets=" + wallets +
+                ", subscriptions=" + subscriptions +
+                '}';
+    }
 
     public Account() {
+    }
+
+    public Account(String lastName, String firstName, String registrationDate, String imageProfile, User user, List<Wallet> wallets, List<Subscribe> subscriptions) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.registrationDate = registrationDate;
+        this.imageProfile = imageProfile;
+        this.user = user;
+        this.wallets = wallets;
+        this.subscriptions = subscriptions;
     }
 
     @Override
@@ -36,64 +75,82 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(account_id, account.account_id) &&
-                Objects.equals(last_name, account.last_name) &&
-                Objects.equals(first_name, account.first_name) &&
-                Objects.equals(registration_date, account.registration_date) &&
-                Objects.equals(image_profile, account.image_profile) &&
-                Objects.equals(user_id, account.user_id);
+        return Objects.equals(accountId, account.accountId) &&
+                Objects.equals(lastName, account.lastName) &&
+                Objects.equals(firstName, account.firstName) &&
+                Objects.equals(registrationDate, account.registrationDate) &&
+                Objects.equals(imageProfile, account.imageProfile) &&
+                Objects.equals(user, account.user) &&
+                Objects.equals(wallets, account.wallets) &&
+                Objects.equals(subscriptions, account.subscriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(account_id, last_name, first_name, registration_date, image_profile, user_id);
+        return Objects.hash(accountId, lastName, firstName, registrationDate, imageProfile, user, wallets, subscriptions);
     }
 
-    public Long getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setAccount_id(Long account_id) {
-        this.account_id = account_id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getRegistration_date() {
-        return registration_date;
+    public String getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegistration_date(String registration_date) {
-        this.registration_date = registration_date;
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
-    public String getImage_profile() {
-        return image_profile;
+    public String getImageProfile() {
+        return imageProfile;
     }
 
-    public void setImage_profile(String image_profile) {
-        this.image_profile = image_profile;
+    public void setImageProfile(String imageProfile) {
+        this.imageProfile = imageProfile;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Wallet> getWallets() {
+        return wallets;
+    }
+
+    public void setWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
+    }
+
+    public List<Subscribe> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<Subscribe> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 }

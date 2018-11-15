@@ -31,7 +31,7 @@ public class UserDataServiceImpl implements UserDataService {
 
         if (userViewModels != null) {
             for (UserViewModel userViewModel : userViewModels) {
-                if (userViewModel.getUser_id() == id)
+                if (userViewModel.getUserId() == id)
                     return userViewModel;
             }
         }

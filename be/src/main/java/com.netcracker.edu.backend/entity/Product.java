@@ -2,6 +2,7 @@ package com.netcracker.edu.backend.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,7 +11,7 @@ public class Product {
     @Id
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long product_id;
+    private Long productId;
 
     @Column(name = "name")
     private String name;
@@ -19,24 +20,37 @@ public class Product {
     private Integer cost;
 
     @Column(name = "long_description")
-    private  String long_description;
+    private  String longDescription;
 
     @Column(name = "short_description")
-    private  String short_description;
+    private  String shortDescription;
 
     @Column(name = "image")
     private String image;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
-    private Category category_id;
-
+    private Category category;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "comment_id")
-    private Comment comment_id;
+    private Comment comment;
 
     public Product() {
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", cost=" + cost +
+                ", longDescription='" + longDescription + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", image='" + image + '\'' +
+                ", category=" + category +
+                ", comment=" + comment +
+                '}';
     }
 
     @Override
@@ -44,27 +58,27 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(product_id, product.product_id) &&
+        return Objects.equals(productId, product.productId) &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(cost, product.cost) &&
-                Objects.equals(long_description, product.long_description) &&
-                Objects.equals(short_description, product.short_description) &&
+                Objects.equals(longDescription, product.longDescription) &&
+                Objects.equals(shortDescription, product.shortDescription) &&
                 Objects.equals(image, product.image) &&
-                Objects.equals(category_id, product.category_id) &&
-                Objects.equals(comment_id, product.comment_id);
+                Objects.equals(category, product.category) &&
+                Objects.equals(comment, product.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(product_id, name, cost, long_description, short_description, image, category_id, comment_id);
+        return Objects.hash(productId, name, cost, longDescription, shortDescription, image, category, comment);
     }
 
-    public Long getProduct_id() {
-        return product_id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -83,20 +97,20 @@ public class Product {
         this.cost = cost;
     }
 
-    public String getLong_description() {
-        return long_description;
+    public String getLongDescription() {
+        return longDescription;
     }
 
-    public void setLong_description(String long_description) {
-        this.long_description = long_description;
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
     }
 
-    public String getShort_description() {
-        return short_description;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setShort_description(String short_description) {
-        this.short_description = short_description;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public String getImage() {
@@ -107,19 +121,19 @@ public class Product {
         this.image = image;
     }
 
-    public Category getCategory_id() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_id(Category category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Comment getComment_id() {
-        return comment_id;
+    public Comment getComment() {
+        return comment;
     }
 
-    public void setComment_id(Comment comment_id) {
-        this.comment_id = comment_id;
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }

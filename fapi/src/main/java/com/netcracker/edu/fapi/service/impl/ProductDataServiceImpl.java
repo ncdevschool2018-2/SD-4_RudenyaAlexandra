@@ -28,10 +28,9 @@ public class ProductDataServiceImpl implements ProductDataService {
 
         RestTemplate restTemplate = new RestTemplate();
         ProductViewModel[] productViewModels = restTemplate.getForObject(backendServerUrl + "/api/product/", ProductViewModel[].class);
-
         if (productViewModels != null) {
             for (ProductViewModel productViewModel : productViewModels) {
-                if (productViewModel.getProduct_id() == id)
+                if (productViewModel.getProductId() == id)
                     return productViewModel;
             }
         }

@@ -21,6 +21,10 @@ public class CommentDataController {
         return ResponseEntity.ok(commentDataService.getAll());
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<CommentViewModel> getCommentById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(commentDataService.getCommentById(id));
+    }
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<CommentViewModel> saveComment(@RequestBody CommentViewModel comment /*todo server validation*/) {
         if (comment != null) {

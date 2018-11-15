@@ -31,7 +31,7 @@ public class SubscribeDataServiceImpl implements SubscribeDataService {
 
         if (subscribeViewModels != null) {
             for (SubscribeViewModel subscribeViewModel : subscribeViewModels) {
-                if (subscribeViewModel.getSubscribe_id() == id)
+                if (subscribeViewModel.getSubscribeId() == id)
                     return subscribeViewModel;
             }
         }

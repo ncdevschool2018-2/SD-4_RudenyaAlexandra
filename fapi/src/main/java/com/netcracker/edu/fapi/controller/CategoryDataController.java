@@ -21,6 +21,11 @@ public class CategoryDataController {
         return ResponseEntity.ok(categoryDataService.getAll());
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<CategoryViewModel> getCategoryById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(categoryDataService.getCategoryById(id));
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<CategoryViewModel> saveCategory(@RequestBody CategoryViewModel category /*todo server validation*/) {
         if (category != null) {

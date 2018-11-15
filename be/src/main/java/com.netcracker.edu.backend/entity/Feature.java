@@ -10,7 +10,7 @@ public class Feature {
     @Id
     @Column(name = "feature_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long feature_id;
+    private Long featureId;
 
     @Column(name = "title")
     private String title;
@@ -21,16 +21,42 @@ public class Feature {
     @Column(name = "days")
     private  Integer days;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "subscribe_id")
-    private Subscribe subscribe_id;
+    @Column(name = "subscribe_id")
+    private Long subscribeId;
 
-    public Long getFeature_id() {
-        return feature_id;
+    public Feature() {
     }
 
-    public void setFeature_id(Long feature_id) {
-        this.feature_id = feature_id;
+    public Feature(String title, Integer cost, Integer days, Long subscribeId) {
+        this.title = title;
+        this.cost = cost;
+        this.days = days;
+        this.subscribeId = subscribeId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Feature feature = (Feature) o;
+        return Objects.equals(featureId, feature.featureId) &&
+                Objects.equals(title, feature.title) &&
+                Objects.equals(cost, feature.cost) &&
+                Objects.equals(days, feature.days) &&
+                Objects.equals(subscribeId, feature.subscribeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(featureId, title, cost, days, subscribeId);
+    }
+
+    public Long getFeatureId() {
+        return featureId;
+    }
+
+    public void setFeatureId(Long featureId) {
+        this.featureId = featureId;
     }
 
     public String getTitle() {
@@ -57,31 +83,11 @@ public class Feature {
         this.days = days;
     }
 
-    public Subscribe getSubscribe_id() {
-        return subscribe_id;
+    public Long getSubscribeId() {
+        return subscribeId;
     }
 
-    public void setSubscribe_id(Subscribe subscribe_id) {
-        this.subscribe_id = subscribe_id;
-    }
-
-    public Feature() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Feature feature = (Feature) o;
-        return Objects.equals(feature_id, feature.feature_id) &&
-                Objects.equals(title, feature.title) &&
-                Objects.equals(cost, feature.cost) &&
-                Objects.equals(days, feature.days) &&
-                Objects.equals(subscribe_id, feature.subscribe_id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(feature_id, title, cost, days, subscribe_id);
+    public void setSubscribeId(Long subscribeId) {
+        this.subscribeId = subscribeId;
     }
 }

@@ -8,20 +8,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { SigninModule} from './signin-page/signin-page.module';
 import { MainPageModule } from './main-page/main-page.module';
 import {AccountPageModule} from './account-page/account-page.module';
-import { CategoryComponent } from './category/category.component';
+import { CategoryProductModule } from './category-product/category-product.module';
 import { ProductModule } from './product-page/product.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
-    AppComponent, CategoryComponent, NavbarComponent
+    AppComponent, NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule,
     LoginModule, MainPageModule, AccountPageModule,
-    SigninModule, ProductModule, BsDropdownModule.forRoot()
+    SigninModule, ProductModule,  BsDropdownModule.forRoot(),
+    CategoryProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]

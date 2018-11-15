@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../model/user';
 import { UserService } from '../service/user.service';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { ValidUser } from './validUser';
+import { UserData } from '../sharedData/user';
 
 
 @Component({
@@ -14,27 +13,10 @@ import { ValidUser } from './validUser';
 export class LoginComponent implements OnInit {
 
   remember = false;
-  public editMode = false;
-  public userAccount: User[];
-  public userValidate: ValidUser[] ;
-
-  private subscriptions: Subscription[] = [];
-  public editTableUser: ValidUser = new ValidUser();
-
+  public user = new UserData(this.userService);
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.loadUser();
+    this.user.ngOnInit();
   }
-
-  private loadUser(): void {
-    // Get data from BillingAccountService
-    this.subscriptions.push(this.userService.getUser().subscribe(accounts => {
-      // Parse json response into local array
-      this.userAccount = accounts as User[];
-      // Check data in console
-      console.log(this.userAccount); // don't use console.log in angular :)
-    }));
-  }
-
 }

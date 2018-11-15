@@ -21,6 +21,11 @@ public class UserDataController {
         return ResponseEntity.ok(usersDataService.getAll());
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserViewModel> getUserById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(usersDataService.getUserById(id));
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserViewModel> saveUser(@RequestBody UserViewModel user /*todo server validation*/) {
         if (user != null) {

@@ -1,9 +1,9 @@
 export class Wallet {
-    wallet_id: number;
-    card_number: number;
+    walletId: number;
+    cardNumber: number;
     CVV: number;
-    card_validity_period: String;
+    cardValidityPeriod: String;
     currency: number;
     balance: number;
-    account_id: Account;
+    accountId: number;
 }

@@ -8,28 +8,12 @@ import java.util.Objects;
 public class Category {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Long category_id;
+    private Long categoryId;
 
     @Column(name = "name_category")
-    private String name_category;
+    private String nameCategory;
 
     public Category() {
-    }
-
-    public Long getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(Long category_id) {
-        this.category_id = category_id;
-    }
-
-    public String getName_category() {
-        return name_category;
-    }
-
-    public void setName_category(String name_category) {
-        this.name_category = name_category;
     }
 
     @Override
@@ -37,12 +21,28 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(category_id, category.category_id) &&
-                Objects.equals(name_category, category.name_category);
+        return Objects.equals(categoryId, category.categoryId) &&
+                Objects.equals(nameCategory, category.nameCategory);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(category_id, name_category);
+        return Objects.hash(categoryId, nameCategory);
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getNameCategory() {
+        return nameCategory;
+    }
+
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 }

@@ -2,6 +2,7 @@ package com.netcracker.edu.backend.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,63 +11,42 @@ public class Subscribe {
     @Id
     @Column(name = "subscribe_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long subscribe_id;
+    private Long subscribeId;
 
     @Column(name = "start_date")
-    private Date start_date;
+    private Date startDate;
 
     @Column(name = "end_date")
-    private Date end_date;
+    private Date endDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @Column(name = "account_id")
+    private Long accountId;
+
     @JoinColumn(name = "product_id")
-    private Product product_id;
+    private Long productId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id")
-    private Account account_id;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "feature_id")
+    private List<Feature> features;
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
 
     public Subscribe() {
     }
 
-    public Long getSubscribe_id() {
-        return subscribe_id;
-    }
-
-    public void setSubscribe_id(Long subscribe_id) {
-        this.subscribe_id = subscribe_id;
-    }
-
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
-
-    public Date getEnd_date() {
-        return end_date;
-    }
-
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
-    }
-
-    public Product getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(Product product_id) {
-        this.product_id = product_id;
-    }
-
-    public Account getAccount_id() {
-        return account_id;
-    }
-
-    public void setAccount_id(Account account_id) {
-        this.account_id = account_id;
+    public Subscribe(Date startDate, Date endDate, Long accountId, Long productId, List<Feature> features) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.accountId = accountId;
+        this.productId = productId;
+        this.features = features;
     }
 
     @Override
@@ -74,15 +54,55 @@ public class Subscribe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscribe subscribe = (Subscribe) o;
-        return Objects.equals(subscribe_id, subscribe.subscribe_id) &&
-                Objects.equals(start_date, subscribe.start_date) &&
-                Objects.equals(end_date, subscribe.end_date) &&
-                Objects.equals(product_id, subscribe.product_id) &&
-                Objects.equals(account_id, subscribe.account_id);
+        return Objects.equals(subscribeId, subscribe.subscribeId) &&
+                Objects.equals(startDate, subscribe.startDate) &&
+                Objects.equals(endDate, subscribe.endDate) &&
+                Objects.equals(productId, subscribe.productId) &&
+                Objects.equals(accountId, subscribe.accountId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subscribe_id, start_date, end_date, product_id, account_id);
+        return Objects.hash(subscribeId, startDate, endDate, productId, accountId);
+    }
+
+    public Long getSubscribeId() {
+        return subscribeId;
+    }
+
+    public void setSubscribeId(Long subscribeId) {
+        this.subscribeId = subscribeId;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

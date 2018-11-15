@@ -11,7 +11,6 @@ import { SettingComponent } from './setting/setting.component';
 import { CommentUserComponent } from './commentUser/commentUser.component';
 import { AdminUserAccountComponent } from './userAccountForAdmin/userAccountForAdmin.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule, BsDatepickerModule.forRoot()
+    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule
   ],
   exports: [
     AccountPageComponent, MenuAccountComponent, SubscribeComponent,  WalletComponent, SettingComponent, CommentUserComponent,

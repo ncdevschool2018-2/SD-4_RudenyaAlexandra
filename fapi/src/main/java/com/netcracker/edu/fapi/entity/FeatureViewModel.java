@@ -4,21 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FeatureViewModel {
-    private Long feature_id;
+    private Long featureId;
     private String title;
     private Integer cost;
     private Integer days;
-    private SubscribeViewModel subscribe_id;
+    private Long subscribeId;
 
     public FeatureViewModel() {
     }
 
-    public Long getFeature_id() {
-        return feature_id;
+    public Long getFeatureId() {
+        return featureId;
     }
 
-    public void setFeature_id(Long feature_id) {
-        this.feature_id = feature_id;
+    public void setFeatureId(Long featureId) {
+        this.featureId = featureId;
     }
 
     public String getTitle() {
@@ -45,11 +45,11 @@ public class FeatureViewModel {
         this.days = days;
     }
 
-    public SubscribeViewModel getSubscribe_id() {
-        return subscribe_id;
+    public Long getSubscribeId() {
+        return subscribeId;
     }
 
-    public void setSubscribe_id(SubscribeViewModel subscribe_id) {
-        this.subscribe_id = subscribe_id;
+    public void setSubscribeId(Long subscribeId) {
+        this.subscribeId = subscribeId;
     }
 }

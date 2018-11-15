@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CategoryService } from '../service/category.service';
+import { CategoryData } from '../sharedData/category';
 
 interface Link {
     name: string;
@@ -13,19 +15,15 @@ interface Link {
 // спросить про output и input
 export class NavbarComponent implements OnInit {
 
-    role = 'user';
+    //role = 'user';
     links: Link[] = [
         {name: 'Главная', url: '/home'},
     ];
-
-    items: string[] = [
-        'The first choice!',
-        'And another choice for you.',
-        'but wait! A third!'
-      ];
+    
+    public categories = new CategoryData(this.categoryService);
     ngOnInit(): void {
     }
 
-    constructor() {
+    constructor(private categoryService: CategoryService) {
     }
 }

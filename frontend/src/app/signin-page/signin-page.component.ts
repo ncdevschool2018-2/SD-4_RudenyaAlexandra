@@ -1,7 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {User} from '../model/user';
+import { UserData } from '../sharedData/user';
 import { UserService } from '../service/user.service';
-import { Subscription } from 'rxjs/internal/Subscription';
+import { AccountService } from '../service/account.service';
+import { AccountData } from '../sharedData/account';
+import { Account } from '../model/account';
+import { User } from '../model/user';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-signin-page',
@@ -12,56 +16,42 @@ import { Subscription } from 'rxjs/internal/Subscription';
 export class SigninComponent implements OnInit, OnDestroy {
 
   passwordRepeat: string;
-  public editMode = false;
-
+  public user = new UserData(this.userService);
+  public accounts = new AccountData(this.accountService);
   public editTableUser: User = new User();
   public userAccount: User[];
+  public editAccount: Account = new Account();
+  public account1: Account[];
+  public subscription: Subscription[] = [];
 
-  private subscriptions: Subscription[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private accountService: AccountService) {}
 
   ngOnInit() {
-    this.loadUser();
-  }
-
-
-  public _addUser(): void {
-      this.editTableUser.role = 'user';
-      this.subscriptions.push(this.userService.saveUser
-        (this.editTableUser).subscribe(() => {
-            this._updateUser();
-            this.refreshUser();
-        }));
-  }
-
-  public _updateUser(): void {
-      this.loadUser();
-  }
-
-  private refreshUser(): void {
-      this.editTableUser = new User();
-  }
-
-  public _deleteUser(userId: string): void {
-    this.subscriptions.push(this.userService.deleteUser(userId).subscribe(() => {
-      this._updateUser();
-      this.refreshUser();
-    }));
-  }
-
-  private loadUser(): void {
-    // Get data from BillingAccountService
-    this.subscriptions.push(this.userService.getUser().subscribe(accounts => {
-      // Parse json response into local array
-      this.userAccount = accounts as User[];
-      // Check data in console
-      console.log(this.userAccount); // don't use console.log in angular :)
-    }));
+    this.user.ngOnInit();
+    this.accounts.ngOnInit();
+   /* this.user.editTableUser.userId = this.user.userAccount[this.user.userAccount.length].userId + 1;
+    this.accounts.editAccount.accountId = this.accounts.userAccount[this.accounts.userAccount.length].accountId + 1;*/
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription =>
-      subscription.unsubscribe());
   }
+
+  public _addUser(): void {
+      this.editTableUser.role = 'user';
+      this.subscription.push(this.userService.saveUser
+        (this.editTableUser).subscribe(() => {
+            this.user._updateUser();
+            this.user.refreshUser();
+        }));
+  }
+
+  public _addAccount():  void {
+    this.subscription.push(this.accountService.saveAccount(this.editAccount).subscribe( () => {
+        this.accounts._loadAccount();
+        this.accounts._refreshAccount();
+    }));
+    
 }
+}//указать все поля для 2 сущносте1, отправляю модельку user и account saveUser , filter java, spring ses, val - fapi, 
+//констуроктор объявить на бэке и тянуть только определенные

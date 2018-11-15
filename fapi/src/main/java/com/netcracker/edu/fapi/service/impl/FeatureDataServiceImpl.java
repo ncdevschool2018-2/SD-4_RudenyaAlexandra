@@ -31,7 +31,7 @@ public class FeatureDataServiceImpl implements FeatureDataService {
 
         if (featureViewModels != null) {
             for (FeatureViewModel featureViewModel : featureViewModels) {
-                if (featureViewModel.getFeature_id() == id)
+                if (featureViewModel.getFeatureId() == id)
                     return featureViewModel;
             }
         }

@@ -4,55 +4,65 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.netcracker.edu.fapi.service.ProductDataService;
 
 import java.sql.Date;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubscribeViewModel {
-    private Long subscribe_id;
-    private Date start_date;
-    private Date end_date;
-    private ProductViewModel product_id;
-    private AccountViewModel account_id;
+    private Long subscribeId;
+    private Date startDate;
+    private Date endDate;
+    private Long productId;
+    private Long accountId;
+    private List<FeatureViewModel> features;
 
     public SubscribeViewModel() {
     }
 
-    public Long getSubscribe_id() {
-        return subscribe_id;
+    public List<FeatureViewModel> getFeatures() {
+        return features;
     }
 
-    public void setSubscribe_id(Long subscribe_id) {
-        this.subscribe_id = subscribe_id;
+    public void setFeatures(List<FeatureViewModel> features) {
+        this.features = features;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public Long getSubscribeId() {
+        return subscribeId;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setSubscribeId(Long subscribeId) {
+        this.subscribeId = subscribeId;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public ProductViewModel getProduct_id() {
-        return product_id;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setProduct_id(ProductViewModel product_id) {
-        this.product_id = product_id;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public AccountViewModel getAccount_id() {
-        return account_id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setAccount_id(AccountViewModel account_id) {
-        this.account_id = account_id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }
