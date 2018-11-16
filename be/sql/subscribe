@@ -6,6 +6,8 @@ CREATE TABLE `subscribe` (
   `account_id` bigint(20) NOT NULL,
   PRIMARY KEY (`subscribe_id`),
   UNIQUE KEY `subscribe_id_UNIQUE` (`subscribe_id`),
+  KEY `account_id_idx` (`account_id`),
   KEY `product_id_idx` (`product_id`),
+  CONSTRAINT `account_id` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1
