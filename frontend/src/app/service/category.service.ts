@@ -22,7 +22,7 @@ export class CategoryService {
     deleteCategory(category_id: number): Observable<void> {
         return this.http.delete<void>('/api/category/' + category_id);
     }
-    getCategoryById(categoryId: number): Observable<Category[]> {
-        return this.http.get<Category[]>('api/category/' + categoryId);
+    getCategoryById(categoryId: number): Observable<Category> {
+        return this.http.get<Category>('api/category/' + categoryId);
     }
 }

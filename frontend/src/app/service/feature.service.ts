@@ -23,7 +23,7 @@ export class FeatureService {
         return this.http.delete<void>('/api/feature/' + feature_id);
     }
 
-    getFeatureById(featureId: number): Observable<Feature[]> {
-        return this.http.get<Feature[]>('api/feature/' + featureId);
+    getFeatureById(featureId: number): Observable<Feature> {
+        return this.http.get<Feature>('api/feature/' + featureId);
     }
 }

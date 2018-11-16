@@ -22,7 +22,7 @@ export class SubscribeService {
     deleteSubscribe(subscribe_id: number): Observable<void> {
         return this.http.delete<void>('/api/subscribe/' + subscribe_id);
     }
-    getSubscribeById(subscribeId: number): Observable<Subscribe[]> {
-        return this.http.get<Subscribe[]>('api/subscribe/' + subscribeId);
+    getSubscribeById(subscribeId: number): Observable<Subscribe> {
+        return this.http.get<Subscribe>('api/subscribe/' + subscribeId);
     }
 }

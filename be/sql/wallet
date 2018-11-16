@@ -1,0 +1,11 @@
+CREATE TABLE `wallet` (
+  `wallet_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `card_number` bigint(30) NOT NULL,
+  `CVV` int(11) NOT NULL,
+  `card_validity_period` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `currency` int(11) NOT NULL,
+  `balance` bigint(20) NOT NULL,
+  `account_id` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`wallet_id`),
+  UNIQUE KEY `id_UNIQUE` (`wallet_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1

@@ -6,14 +6,17 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "account", schema = "backend")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "accountId")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Long accountId;
 
@@ -24,14 +27,14 @@ public class Account {
     private String firstName;
 
     @Column(name = "registration_date")
-    private  String registrationDate;
+    private LocalDate registrationDate;
 
     @Column(name = "image_profile")
     private String imageProfile;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @PrimaryKeyJoinColumn(name = "account_id", referencedColumnName = "user_id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -60,7 +63,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(String lastName, String firstName, String registrationDate, String imageProfile, User user, List<Wallet> wallets, List<Subscribe> subscriptions) {
+    public Account(String lastName, String firstName, LocalDate registrationDate, String imageProfile, User user, List<Wallet> wallets, List<Subscribe> subscriptions) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.registrationDate = registrationDate;
@@ -114,11 +117,12 @@ public class Account {
         this.firstName = firstName;
     }
 
-    public String getRegistrationDate() {
+
+    public LocalDate getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(String registrationDate) {
+    public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
     }
 

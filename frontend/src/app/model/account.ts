@@ -1,9 +1,11 @@
-import { User } from './user';
+import { Wallet } from './wallet';
+import { Subscribe } from './subscribe';
 export class Account {
     accountId: number;
     lastName: string;
     firstName: string;
     registrationDate: string;
     imageProfile: string;
-    userId: User;
+    wallet: Wallet[];
+    subscription: Subscribe[];
 }

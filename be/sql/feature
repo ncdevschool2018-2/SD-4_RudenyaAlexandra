@@ -1,0 +1,10 @@
+CREATE TABLE `feature` (
+  `feature_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  `cost` int(11) NOT NULL DEFAULT '0',
+  `days` int(11) NOT NULL DEFAULT '0',
+  `subscribe_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`feature_id`),
+  UNIQUE KEY `id_UNIQUE` (`feature_id`),
+  KEY `subscribe_id_idx` (`subscribe_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1

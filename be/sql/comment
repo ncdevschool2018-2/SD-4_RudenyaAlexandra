@@ -1,0 +1,6 @@
+CREATE TABLE `comment` (
+  `comment_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `text` text,
+  PRIMARY KEY (`comment_id`),
+  UNIQUE KEY `id_UNIQUE` (`comment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1

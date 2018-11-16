@@ -23,7 +23,7 @@ export class UserService {
         return this.http.delete<void>('/api/users/' + userId);
     }
 
-    getUserById(userId: number): Observable<User[]> {
-        return this.http.get<User[]>('api/users/' + userId);
+    getUserById(userId: number): Observable<User> {
+        return this.http.get<User>('api/users/' + userId);
     }
 }
