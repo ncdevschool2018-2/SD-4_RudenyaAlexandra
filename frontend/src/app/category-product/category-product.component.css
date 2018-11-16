@@ -1,0 +1,35 @@
+.well {
+    top: 50px;
+    background-color: white;
+    border-color: blueviolet;
+}
+
+.name-style {
+    font-size: 36px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 100px;
+}
+
+.shortD-style {
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 100px;
+    margin-top: 30px;
+}
+
+.button-style {
+    margin-left: 900px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 24px;
+    border-color: rgb(241, 75, 75);
+    background-color: rgb(241, 75, 75);
+    color: white;
+
+}
+
+.content-wrapper {
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    padding-left: 10px; 
+    margin-bottom: 10px;
+  }

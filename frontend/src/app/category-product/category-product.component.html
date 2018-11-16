@@ -1,0 +1,17 @@
+<div class = "container col-md-12 col-md-offset-1">
+    <div  *ngFor= "let p of product.products">
+        <div class = "col-md-10 well" >
+          <div class = "col-md-2">
+              <img src = "../../assets/img/3.1.JPG" style = "width:300px; height: 300px;">
+          </div>
+          <div class = "col-md-8">
+              <p class = "name-style">{{ p.name }}</p>
+              <p class = "shortD-style">{{ p.shortDescription }}</p>
+              <p class = "name-style">Имя игрушки</p>
+              <p class = "shortD-style">представлен привилегированными акциями наминалом 800 зуб с ежегодной выплатой дивидентов по ставке 10% от наминала 
+                  акции размещены с дисконтам в размере 5%  кроме того эмиссионные расходы составляют 30 руб на акцию 
+                  коэфф налогообложения 0,24 </p>
+              <button class = "button-style" routerLink = "/product">Подробнее</button>
+          </div>
+      </div>
+</div>

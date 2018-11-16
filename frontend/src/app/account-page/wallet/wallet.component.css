@@ -1,0 +1,47 @@
+.form-control {
+    color: black;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.style-radio {
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    float: right;
+}
+.well {
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    height: 470px;
+    margin-left: 100px;
+    margin-top: 50px;
+    background-color: white;
+    border-color: black;
+}
+
+.style-panel {
+    border: 3px 3px 3px 3px;
+    border-color: black;
+}
+
+
+.style {
+
+    margin-top: 50px;
+    margin-left: 200px;
+}
+
+.style-footer {
+    background: white;
+    border: 3px 3px 3px 3px;
+    border-color:  black;
+}
+
+.style-button {
+   margin-top:50px;
+    color: black;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

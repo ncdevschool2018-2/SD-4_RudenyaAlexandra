@@ -1,0 +1,19 @@
+<div class="col-sm-6">
+    <table class="table panel-style">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Начало подписки</th>
+          <th scope="col">Конец подписки</th>
+          <th scope="col">Изображение подписки</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let s of subscribes.subscribe">
+          <td scope="row">{{ s.subscribeId }}</td>
+          <td scope="row">{{ s.startDate }}</td>
+          <td scope = "row">{{ s.endDate }}</td>
+        </tr>
+        </tbody>
+      </table>
+</div>

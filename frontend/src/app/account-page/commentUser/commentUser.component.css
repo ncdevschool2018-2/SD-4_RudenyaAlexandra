@@ -1,0 +1,15 @@
+.style {
+    margin-top: 100px;
+    margin-left: 50px;
+    font-size: 18px;
+}
+
+.btn-style1 {
+    margin-bottom: 0px; 
+    color: white;
+    background-color: rgb(245, 0, 0);
+    border-color:rgb(245, 0, 0);
+    font-size: 22px;
+    float: right;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

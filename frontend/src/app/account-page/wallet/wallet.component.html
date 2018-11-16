@@ -1,0 +1,72 @@
+<div class = "container-fluid">
+    <div class="row">
+        <div class="col-sm-2 style">
+            <div class="panel panel-default text-center style-panel" *ngFor="let w of wallets.walletMas" >
+                <div class="panel-body">
+                    <p><strong>Номер карточки: {{ w.cardNumber }}</strong></p>
+                    <p><strong>Срок действия: {{ w.cardValidityPeriod }}</strong></p>
+                </div>
+                <div class="panel-footer style-footer">
+                    <button class="btn btn-warning">Оплатить</button>
+                    <button class="btn btn-warning">Удалить</button>
+                </div>
+            </div>
+        </div>
+ 
+        <div class = "container-fluid">
+        <div class="col-sm-5 well">
+                <h3>Заполните данные карточки</h3>
+                <br>
+                <form class = "needs-validation was-validated" novalidate>
+                    <div class="row">
+                        <div class = "col-md-6">
+                            <label for="firstName">Имя</label>
+                            <input type="text" class="form-control" id="firstName"
+                                   placeholder="Введите имя:" value="" required="">
+
+                        </div>
+                        <div class = "col-md-6">
+                            <label for="lastName">Фамилия</label>
+                            <input type="text" class="form-control" id="lastName"
+                                   placeholder="Введите фамилию:" value="" required="">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="cc-number">Номер карты</label>
+                            <input type="text" class="form-control" id="cc-number" placeholder="Номер карты:" required="">
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-cvv">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="Код безопасности:" required="">
+
+                        </div>
+                    </div>
+                    <h3>Срок действия</h3>
+                    <div class="row">
+                        <div class="col-xs-12 col-12 col-md-6 form-group">
+                            <input placeholder="Введите дату: "
+                                class="form-control" >
+                        </div>
+                    </div>
+                    <div class = "style-radio">
+                        <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="saveWallet" name="wallet">
+                                <label class="custom-control-label" for="defaultGroupExample1">Сохранить данные</label>
+                        </div>
+                            
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="craeteWallet" name="wallet" checked>
+                            <label class="custom-control-label" for="defaultGroupExample2">Создать новый кошелек</label>
+                        </div>
+                        <br>
+                    </div>
+                    <button type="submit" class="btn btn-warning style-button" >
+                            Оплатить
+                    </button>
+                </form>
+            </div>
+    </div>
+</div>
