@@ -23,8 +23,8 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "account_id")
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-
     private Account account;
 
     public User() {

@@ -13,20 +13,20 @@ public class AccountViewModel {
     private String firstName;
     private LocalDate registrationDate;
     private String imageProfile;
-    private UserViewModel user;
+    //private UserViewModel user;
     private List<WalletViewModel> wallets;
     private List<SubscribeViewModel> subscriptions;
 
     public AccountViewModel() {
     }
 
-    public UserViewModel getUser() {
+    /*public UserViewModel getUser() {
         return user;
     }
 
     public void setUser(UserViewModel user) {
         this.user = user;
-    }
+    }*/
 
     public Long getAccountId() {
         return accountId;

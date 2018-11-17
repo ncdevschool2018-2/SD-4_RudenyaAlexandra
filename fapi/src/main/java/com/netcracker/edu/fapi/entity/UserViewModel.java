@@ -14,13 +14,6 @@ public class UserViewModel {
     public UserViewModel() {
     }
 
-    public AccountViewModel getAccount() {
-        return account;
-    }
-
-    public void setAccount(AccountViewModel account) {
-        this.account = account;
-    }
 
     public Long getUserId() {
         return userId;
@@ -52,5 +45,13 @@ public class UserViewModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public AccountViewModel getAccount() {
+        return account;
+    }
+
+    public void setAccount(AccountViewModel account) {
+        this.account = account;
     }
 }

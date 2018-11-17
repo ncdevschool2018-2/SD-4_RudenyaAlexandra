@@ -16,7 +16,7 @@ import java.util.Objects;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "accountId")
 public class Account {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Long accountId;
 
@@ -33,8 +33,7 @@ public class Account {
     private String imageProfile;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    @PrimaryKeyJoinColumn(name = "account_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "account_id", referencedColumnName = "user_id", nullable = false)
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
