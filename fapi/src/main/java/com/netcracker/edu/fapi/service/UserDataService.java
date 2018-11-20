@@ -10,6 +10,5 @@ public interface UserDataService {
     UserViewModel getUserById(Long id);
     UserViewModel saveUser(UserViewModel account);
     UserViewModel findByLogin(String name);
-    UserDetails loadUserByUsername(String username);
     void deleteUser(Long id);
 }
