@@ -2,6 +2,7 @@ package com.netcracker.edu.backend.controller;
 import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +45,16 @@ public class UserController {
        this.userService.deleteUser(id);
        return ResponseEntity.noContent().build();
     }//ответ
+
+    /*@RequestMapping(value = "/get/{login}" , method = RequestMethod.GET)//сопоставление запросов
+    public ResponseEntity<User> getUserByLogin(@PathVariable String login){
+        Optional<User> user = userService.findByLogin(login);
+        if(user.isPresent()){
+            return ResponseEntity.ok(user.get());
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+    }//ответ*/
 
 }

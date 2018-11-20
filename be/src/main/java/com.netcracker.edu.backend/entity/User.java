@@ -1,8 +1,9 @@
 package com.netcracker.edu.backend.entity;
 
 import com.fasterxml.jackson.annotation.*;
-
+import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity//Указывает, что данный бин (класс) является сущностью.

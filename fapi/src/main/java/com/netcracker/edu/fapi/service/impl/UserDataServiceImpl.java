@@ -3,15 +3,17 @@ package com.netcracker.edu.fapi.service.impl;
 import com.netcracker.edu.fapi.entity.UserViewModel;
 import com.netcracker.edu.fapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-@Service
-public class UserDataServiceImpl implements UserDataService {
+@Service("userDataService")
+public class UserDataServiceImpl implements UserDataService, UserDetailsService {
 
     @Value("${backend.server.url}")
     private String backendServerUrl;
@@ -45,8 +47,29 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     @Override
+    public UserViewModel findByLogin(String name) {
+        return null;
+    }
+
+    @Override
     public void deleteUser(Long id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/users/" + id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserViewModel user = findByLogin(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid username or password");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getLogin(),
+                user.getPassword(), getAuthority(user));
+    }
+
+    private Set getAuthority(UserViewModel user) {
+        Set auth = new HashSet();
+        auth.add(new SimpleGrantedAuthority(user.getRole()));
+        return auth;
     }
 }

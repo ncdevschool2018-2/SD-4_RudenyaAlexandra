@@ -5,14 +5,17 @@ import com.netcracker.edu.backend.repository.UserRepository;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import javax.annotation.PostConstruct;
+import java.util.*;
 
-
-@Component
-public class UserServiceImpl implements UserService {
+@Component(value = "userService")
+public class UserServiceImpl implements UserService{
 
     private UserRepository repository;
+
+    //private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserServiceImpl(UserRepository repository) {
@@ -21,6 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
+        //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return this.repository.save(user);
     }
 
@@ -32,6 +36,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Iterable<User> getAllUser() {
         return this.repository.findAll();
+    }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return this.repository.findByLogin(login);
     }
 
     @Override
