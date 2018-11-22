@@ -1,8 +1,5 @@
 package com.netcracker.edu.fapi.config;
 
-import com.netcracker.edu.fapi.entity.Constants;
-import com.netcracker.edu.fapi.service.UserDataService;
-import com.netcracker.edu.fapi.service.impl.UserDataServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;

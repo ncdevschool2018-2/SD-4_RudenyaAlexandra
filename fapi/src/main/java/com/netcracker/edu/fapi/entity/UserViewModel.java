@@ -8,12 +8,19 @@ public class UserViewModel {
     private Long userId;
     private String login;
     private String password;
-    private String role;
     private AccountViewModel account;
+    private RoleModel role;
 
     public UserViewModel() {
     }
 
+    public UserViewModel(Long userId, String login, String password, AccountViewModel account, RoleModel role) {
+        this.userId = userId;
+        this.login = login;
+        this.password = password;
+        this.account = account;
+        this.role = role;
+    }
 
     public Long getUserId() {
         return userId;
@@ -39,19 +46,19 @@ public class UserViewModel {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public AccountViewModel getAccount() {
         return account;
     }
 
     public void setAccount(AccountViewModel account) {
         this.account = account;
+    }
+
+    public RoleModel getRole() {
+        return role;
+    }
+
+    public void setRole(RoleModel role) {
+        this.role = role;
     }
 }

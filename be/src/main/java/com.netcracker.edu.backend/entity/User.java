@@ -1,13 +1,13 @@
 package com.netcracker.edu.backend.entity;
 
 import com.fasterxml.jackson.annotation.*;
-import javax.annotation.sql.DataSourceDefinition;
+
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity//Указывает, что данный бин (класс) является сущностью.
 @Table(name = "user")
+//он включен, чтобы разрешить подавление идентификаторов объектов
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
 public class User {
     @Id
@@ -20,23 +20,15 @@ public class User {
 
     @Column(name = "password")
     private String password;
+ //shift+f6
 
-    @Column(name = "role")
-    private String role;
+    @OneToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
     @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "account_id")
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Account account;
-
-    public User() {
-    }
-
-    public User(String login, String password, String role, Account account) {
-        this.login = login;
-        this.password = password;
-        this.role = role;
-        this.account = account;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -79,11 +71,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -93,5 +85,15 @@ public class User {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public User(String login, String password, Role role, Account account) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.account = account;
+    }
+
+    public User() {
     }
 }

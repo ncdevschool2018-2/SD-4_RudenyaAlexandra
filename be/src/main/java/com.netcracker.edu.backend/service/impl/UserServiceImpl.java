@@ -15,12 +15,13 @@ public class UserServiceImpl implements UserService{
 
     private UserRepository repository;
 
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
     public UserServiceImpl(UserRepository repository) {
+
         this.repository = repository;
     }
+
+    //private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public User saveUser(User user) {
@@ -35,11 +36,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Iterable<User> getAllUser() {
+
         return this.repository.findAll();
     }
 
     @Override
     public Optional<User> findByLogin(String login) {
+
         return this.repository.findByLogin(login);
     }
 

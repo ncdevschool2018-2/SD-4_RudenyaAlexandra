@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)//сопоставление запросов
-    public ResponseEntity<Product> getProductById(@PathVariable(name = "id") Long id){
+    public ResponseEntity<Product> getProductById(@PathVariable(name = "id") Long id){//RequestBody, RequestParametr
         Optional<Product> product = productService.getProductById(id);
         if(product.isPresent()){
             return ResponseEntity.ok(product.get());

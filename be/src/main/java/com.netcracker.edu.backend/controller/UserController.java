@@ -14,8 +14,9 @@ public class UserController {
 
     private UserService userService;
 
-    @Autowired
+    @Autowired//имеет ли значение?
     public UserController(UserService usersService){
+
         this.userService = usersService;
     }
 
@@ -46,7 +47,7 @@ public class UserController {
        return ResponseEntity.noContent().build();
     }//ответ
 
-    /*@RequestMapping(value = "/get/{login}" , method = RequestMethod.GET)//сопоставление запросов
+    @RequestMapping(value = "/get/{login}" , method = RequestMethod.GET)//сопоставление запросов
     public ResponseEntity<User> getUserByLogin(@PathVariable String login){
         Optional<User> user = userService.findByLogin(login);
         if(user.isPresent()){
@@ -55,6 +56,6 @@ public class UserController {
         else{
             return ResponseEntity.notFound().build();
         }
-    }//ответ*/
+    }
 
 }

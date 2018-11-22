@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.entity;
 
 public class AuthToken {
+
     private String token;
 
     public AuthToken(String token) {

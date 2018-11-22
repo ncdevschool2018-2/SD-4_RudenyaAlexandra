@@ -30,7 +30,6 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
 
         RestTemplate restTemplate = new RestTemplate();
         UserViewModel[] userViewModels = restTemplate.getForObject(backendServerUrl + "/api/users/", UserViewModel[].class);
-
         if (userViewModels != null) {
             for (UserViewModel userViewModel : userViewModels) {
                 if (userViewModel.getUserId() == id)
@@ -48,7 +47,11 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
 
     @Override
     public UserViewModel findByLogin(String name) {
-        return null;
+        RestTemplate template = new RestTemplate();
+        UserViewModel user = template.getForObject(backendServerUrl +
+                "/api/users/get/" + name, UserViewModel.class);
+
+        return user;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
 
     private Set getAuthority(UserViewModel user) {
         Set auth = new HashSet();
-        auth.add(new SimpleGrantedAuthority(user.getRole()));
+        auth.add(new SimpleGrantedAuthority(user.getRole().getName()));
         return auth;
     }
 }
