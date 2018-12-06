@@ -15,6 +15,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Interceptor } from './core/app.interceptor';
 import { TokenStorage } from './core/token.srorage';
 import {  NotFoundedComponent } from './notFounded/page.component';
+import { LoginActivate } from './loginActivate';
+import { AccountActivate } from './activateAccount';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import {  NotFoundedComponent } from './notFounded/page.component';
     CategoryProductModule
   ],
   providers: [
+    LoginActivate, AccountActivate,
     TokenStorage,
     {
       provide: HTTP_INTERCEPTORS,

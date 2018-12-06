@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     this.user.ngOnInit();
   }
 
-  //протоколы повторить
  public getToken(): void {
     this.authService.attempAuth(this.loginUser).subscribe ( authToken => {
       // tslint:disable-next-line:prefer-const

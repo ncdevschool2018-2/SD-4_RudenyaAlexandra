@@ -8,14 +8,16 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { ProductComponent } from './product-page/product.component';
 import { CategoryProductComponent } from './category-product/category-product.component';
 import {NotFoundedComponent } from './notFounded/page.component';
+import { LoginActivate } from './loginActivate';
+import { AccountActivate } from './activateAccount';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: MainPageComponent},
   {path: 'signin', component: SigninComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [ LoginActivate ]},
   {path: 'contact', component: FooterComponent },
-  {path: 'account', component: AccountPageComponent},
+  {path: 'account', component: AccountPageComponent, canActivate: [ AccountActivate ]},
   {path: 'product', component: ProductComponent },
   {path: 'products', component: CategoryProductComponent},
   {path: '**', component: NotFoundedComponent}
