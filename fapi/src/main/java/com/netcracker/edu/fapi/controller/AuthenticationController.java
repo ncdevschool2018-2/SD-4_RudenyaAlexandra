@@ -6,6 +6,7 @@ import com.netcracker.edu.fapi.config.Constants;
 import com.netcracker.edu.fapi.entity.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +28,7 @@ public class AuthenticationController {
     public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginUser.getLogin(),
+                        loginUser.getLogin(),//почему здесь final
                         loginUser.getPassword()
                 )
         );

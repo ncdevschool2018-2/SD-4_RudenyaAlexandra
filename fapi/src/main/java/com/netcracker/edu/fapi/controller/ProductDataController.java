@@ -2,10 +2,13 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.ProductViewModel;
 import com.netcracker.edu.fapi.service.ProductDataService;
+import com.netcracker.edu.fapi.service.impl.RestPageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -37,4 +40,10 @@ public class ProductDataController {
     public void deleteProduct(@PathVariable String id) {
         productDataService.deleteProduct(Long.valueOf(id));
     }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<PageImpl<ProductViewModel>> getProductPage(HttpServletRequest request) {
+        return ResponseEntity.ok(productDataService.getPageProduct(request));
+    }
+
 }

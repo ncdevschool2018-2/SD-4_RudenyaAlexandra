@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {CategoryService } from '../service/category.service';
 import { CategoryData } from '../sharedData/category';
 
+import { HttpClient } from '@angular/common/http';
+import { TokenStorage } from '../core/token.srorage';
+import { AuthService } from '../service/auth.service';
+
 interface Link {
     name: string;
     url: string;
@@ -15,15 +19,39 @@ interface Link {
 // спросить про output и input
 export class NavbarComponent implements OnInit {
 
-    //role = 'user';
+    public isUser = false;
+    public isAdmin = false;
+    public isNull = false;
     links: Link[] = [
         {name: 'Главная', url: '/home'},
     ];
-    
+
+
     public categories = new CategoryData(this.categoryService);
     ngOnInit(): void {
+        this.getRoleUser();
+    }
+    constructor(private categoryService: CategoryService,  private token: TokenStorage, public authService: AuthService) {
     }
 
-    constructor(private categoryService: CategoryService) {
+    getRoleUser(): any {
+        if (this.token.getToken() !== null) {
+            // tslint:disable-next-line:prefer-const
+            let user: string = this.authService.decodeJwt(this.token.getToken());
+            const userRole: string = this.authService.getRole();
+            // tslint:disable-next-line:triple-equals
+            if (userRole === 'USER') {
+                this.isUser = true;
+            }
+            // tslint:disable-next-line:triple-equals
+            if (userRole === 'ADMIN') {
+                this.isAdmin = true;
+            }
+        }
+        // tslint:disable-next-line:one-line
+        else {
+            this.isNull = true;
+        }
     }
 }
+

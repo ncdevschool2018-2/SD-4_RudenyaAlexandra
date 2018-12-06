@@ -4,6 +4,18 @@
     border-color: blueviolet;
 }
 
+.pagination {
+    margin-top: 75px;
+    margin-left: 470px;
+    font-size: 22px;
+}
+
+.content-wrapper {
+    border: 1px solid #ddd; 
+    margin-bottom: 10px;
+    padding-left: 300px;
+  }
+
 .name-style {
     font-size: 36px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -26,10 +38,3 @@
     color: white;
 
 }
-
-.content-wrapper {
-    border: 1px solid #ddd; 
-    border-radius: 4px; 
-    padding-left: 10px; 
-    margin-bottom: 10px;
-  }

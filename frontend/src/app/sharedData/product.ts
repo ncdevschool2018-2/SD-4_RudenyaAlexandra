@@ -15,7 +15,7 @@ export class ProductData implements OnInit, OnDestroy {
     ngOnInit() { this._loadProduct(); }
     ngOnDestroy() {}
 
-    private _loadProduct() {
+    public _loadProduct() {
         this.subscription.push(this.productService.getProduct().subscribe( product => {
             this.products = product as Product[];
             console.log(product);

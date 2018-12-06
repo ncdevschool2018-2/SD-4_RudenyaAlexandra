@@ -1,5 +1,5 @@
 import { Category } from './category';
-
+import {Comment} from './comment';
 export class Product {
     productId: number;
     name: string;
@@ -7,6 +7,6 @@ export class Product {
     longDescription: string;
     shortDescription: string;
     image: string;
-    categoryId: Category;
-    commentId: Comment;
+    category: Category;
+    comment: Comment;
 }

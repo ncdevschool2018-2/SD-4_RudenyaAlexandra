@@ -1,7 +1,9 @@
-import { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy, Input } from '@angular/core';
 import {User} from '../model/user';
 import { UserService } from '../service/user.service';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { Account } from '../model/account';
+import { Role } from '../model/role';
 
 export class UserData implements OnInit, OnDestroy {
 
@@ -12,7 +14,10 @@ export class UserData implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+    this.editUser.account = new Account();
+    this.editUser.role = new Role();
+  }
 
   ngOnInit() {
     this.loadUser();
@@ -20,7 +25,6 @@ export class UserData implements OnInit, OnDestroy {
 
 
   public _addUser(): void {
-      this.editUser.role = 'user';
       this.subscriptions.push(this.userService.saveUser
         (this.editUser).subscribe(() => {
             this._updateUser();

@@ -3,10 +3,13 @@ package com.netcracker.edu.fapi.service.impl;
 import com.netcracker.edu.fapi.entity.UserViewModel;
 import com.netcracker.edu.fapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,6 +20,11 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
 
     @Value("${backend.server.url}")
     private String backendServerUrl;
+
+    @Bean
+    private PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     public List<UserViewModel> getAll() {
@@ -39,10 +47,12 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
         return null;
     }
 
+
     @Override
-    public UserViewModel saveUser(UserViewModel account) {
+    public UserViewModel saveUser(UserViewModel user) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/users", account, UserViewModel.class).getBody();
+        user.setPassword(encoder().encode(user.getPassword()));
+        return restTemplate.postForEntity(backendServerUrl + "/api/users", user, UserViewModel.class).getBody();
     }
 
     @Override
@@ -50,7 +60,6 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
         RestTemplate template = new RestTemplate();
         UserViewModel user = template.getForObject(backendServerUrl +
                 "/api/users/get/" + name, UserViewModel.class);
-
         return user;
     }
 

@@ -14,8 +14,8 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
-    public Comment() {
-    }
+    @Column( name= "product_id" )
+    private Long productId;
 
     @Override
     public boolean equals(Object o) {
@@ -23,12 +23,16 @@ public class Comment {
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
         return Objects.equals(commentId, comment.commentId) &&
-                Objects.equals(text, comment.text);
+                Objects.equals(text, comment.text) &&
+                Objects.equals(productId, comment.productId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commentId, text);
+        return Objects.hash(commentId, text, productId);
+    }
+
+    public Comment() {
     }
 
     public Long getCommentId() {
@@ -45,5 +49,13 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }

@@ -5,6 +5,7 @@ import { CommentService } from '../service/comment.service';
 import { CommentData } from 'src/app/sharedData/comment';
 import { AccountService } from '../service/account.service';
 import { AccountData } from '../sharedData/account';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination/public_api';
 
 @Component ({
     selector: 'app-product',
@@ -25,6 +26,7 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.comment.ngOnInit();
         this.product._getProductById(1);
     }
+
     ngOnDestroy() {}
 
 }

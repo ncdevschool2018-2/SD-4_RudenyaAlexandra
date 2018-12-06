@@ -29,9 +29,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a  routerLink= "/account" class="style-item account"  *ngIf = "( role == 'user' )">Мой аккаунт</a>
-            <a  routerLink= "/account" *ngIf = "( role == 'admin' )" class="style-item account" >Администратор</a>
-            <button *ngIf = "( role == null )" class = "style-button" routerLink = "/login">Войти</button></li>
+           <a  *ngIf= "isUser && !isAdmin && !isNull"  routerLink="/account" class="style-item account" >Мой аккаунт</a>
+            <a  *ngIf="isAdmin && !isUser && !isNull" routerLink= "/account"  class="style-item account" >Администратор</a>
+            <button  *ngIf="isNull" class = "style-button" routerLink = "/login" (click) = "ngOnInit()">Войти</button>
+            <button *ngIf="!isNull" class = "style-button" (click) = "authService.logout()" (click)= "ngOnInit()">Выйти</button></li>
         </ul>
       </div>
     </div>

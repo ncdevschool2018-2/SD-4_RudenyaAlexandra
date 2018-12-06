@@ -2,6 +2,8 @@ package com.netcracker.edu.fapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductViewModel {
     private Long productId;
@@ -11,7 +13,7 @@ public class ProductViewModel {
     private String shortDescription;
     private String image;
     private CategoryViewModel category;
-    private CommentViewModel comment;
+    private List<CommentViewModel> comment;
 
     public ProductViewModel() {
     }
@@ -72,11 +74,11 @@ public class ProductViewModel {
         this.category = category;
     }
 
-    public CommentViewModel getComment() {
+    public List<CommentViewModel> getComment() {
         return comment;
     }
 
-    public void setComment(CommentViewModel comment) {
+    public void setComment(List<CommentViewModel> comment) {
         this.comment = comment;
     }
 }

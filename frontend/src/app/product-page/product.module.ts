@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommentComponent } from './comment/comment.component';
 import { ProductComponent } from './product.component';
 import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule, FormsModule
+    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule, FormsModule, PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: [],

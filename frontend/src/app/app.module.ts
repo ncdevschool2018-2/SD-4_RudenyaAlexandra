@@ -4,7 +4,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login-page/login-page.model';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SigninModule} from './signin-page/signin-page.module';
 import { MainPageModule } from './main-page/main-page.module';
 import {AccountPageModule} from './account-page/account-page.module';
@@ -12,10 +12,14 @@ import { CategoryProductModule } from './category-product/category-product.modul
 import { ProductModule } from './product-page/product.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { Interceptor } from './core/app.interceptor';
+import { TokenStorage } from './core/token.srorage';
+import {  NotFoundedComponent } from './notFounded/page.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent, NavbarComponent
+    AppComponent, NavbarComponent, NotFoundedComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     SigninModule, ProductModule,  BsDropdownModule.forRoot(),
     CategoryProductModule
   ],
-  providers: [],
+  providers: [
+    TokenStorage,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,8 @@ import com.netcracker.edu.backend.entity.Comment;
 import com.netcracker.edu.backend.repository.CommentRepository;
 import com.netcracker.edu.backend.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -37,5 +39,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteComment(Long id) {
         this.repository.deleteById(id);
+    }
+
+    @Override
+    public Page<Comment> getCommentPage(Pageable pageable) {
+        return this.repository.findAll(pageable);
     }
 }

@@ -11,19 +11,12 @@ public class SubscribeViewModel {
     private Long subscribeId;
     private Date startDate;
     private Date endDate;
-    private Long productId;
-    private Long accountId;
+    private ProductViewModel product;
+    private AccountViewModel account;
     private List<FeatureViewModel> features;
+    private boolean status;
 
     public SubscribeViewModel() {
-    }
-
-    public List<FeatureViewModel> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<FeatureViewModel> features) {
-        this.features = features;
     }
 
     public Long getSubscribeId() {
@@ -50,19 +43,35 @@ public class SubscribeViewModel {
         this.endDate = endDate;
     }
 
-    public Long getProductId() {
-        return productId;
+    public ProductViewModel getProduct() {
+        return product;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setProduct(ProductViewModel product) {
+        this.product = product;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public AccountViewModel getAccount() {
+        return account;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccount(AccountViewModel account) {
+        this.account = account;
+    }
+
+    public List<FeatureViewModel> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<FeatureViewModel> features) {
+        this.features = features;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

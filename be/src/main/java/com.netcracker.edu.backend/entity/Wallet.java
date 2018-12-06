@@ -26,7 +26,7 @@ public class Wallet {
     private Integer currency;
 
     @Column(name = "balance")
-    private Long balance;
+    private Integer balance;
 
     @Column(name = "account_Id")
     private Long accountId;
@@ -91,11 +91,11 @@ public class Wallet {
         this.currency = currency;
     }
 
-    public Long getBalance() {
+    public Integer getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(Integer balance) {
         this.balance = balance;
     }
 

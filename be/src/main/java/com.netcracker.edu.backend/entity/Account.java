@@ -36,40 +36,16 @@ public class Account {
     @JoinColumn(name = "account_id", referencedColumnName = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
-    private List<Wallet> wallets;
+    private Wallet wallet;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "subscribe_id")
     private List<Subscribe> subscriptions;
 
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "accountId=" + accountId +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", registrationDate='" + registrationDate + '\'' +
-                ", imageProfile='" + imageProfile + '\'' +
-                ", user=" + user +
-                ", wallets=" + wallets +
-                ", subscriptions=" + subscriptions +
-                '}';
-    }
-
     public Account() {
-    }
-
-    public Account(String lastName, String firstName, LocalDate registrationDate, String imageProfile, User user, List<Wallet> wallets, List<Subscribe> subscriptions) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.registrationDate = registrationDate;
-        this.imageProfile = imageProfile;
-        this.user = user;
-        this.wallets = wallets;
-        this.subscriptions = subscriptions;
     }
 
     @Override
@@ -83,13 +59,24 @@ public class Account {
                 Objects.equals(registrationDate, account.registrationDate) &&
                 Objects.equals(imageProfile, account.imageProfile) &&
                 Objects.equals(user, account.user) &&
-                Objects.equals(wallets, account.wallets) &&
+                Objects.equals(wallet, account.wallet) &&
                 Objects.equals(subscriptions, account.subscriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, lastName, firstName, registrationDate, imageProfile, user, wallets, subscriptions);
+        return Objects.hash(accountId, lastName, firstName, registrationDate, imageProfile, user, wallet, subscriptions);
+    }
+
+    public Account(String lastName, String firstName, LocalDate registrationDate, String imageProfile,
+                   User user, Wallet wallet, List<Subscribe> subscriptions) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.registrationDate = registrationDate;
+        this.imageProfile = imageProfile;
+        this.user = user;
+        this.wallet = wallet;
+        this.subscriptions = subscriptions;
     }
 
     public Long getAccountId() {
@@ -116,7 +103,6 @@ public class Account {
         this.firstName = firstName;
     }
 
-
     public LocalDate getRegistrationDate() {
         return registrationDate;
     }
@@ -141,12 +127,12 @@ public class Account {
         this.user = user;
     }
 
-    public List<Wallet> getWallets() {
-        return wallets;
+    public Wallet getWallet() {
+        return wallet;
     }
 
-    public void setWallets(List<Wallet> wallets) {
-        this.wallets = wallets;
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
     public List<Subscribe> getSubscriptions() {

@@ -2,13 +2,13 @@
         <h1 class ="text-style">Вход</h1>
         <div class="form-group">
             <label>E-mail</label>
-            <input class="form-control" name="email" [(ngModel)]="user.editTableUser.login" #email="ngModel"
+            <input class="form-control" name="email" [(ngModel)]="loginUser.login" #email="ngModel"
                     required />
         </div>
         <div class="form-group">
             <label>Пароль</label>
-            <input class="form-control" name="password" [(ngModel)]="user.editTableUser.password" #password="ngModel" required/>
+            <input class="form-control" name="password" [(ngModel)]="loginUser.password" #password="ngModel" required/>
         </div>
-        <button class = "col-md-offset-8 btn btn-link ">Забыли пароль?</button>
-        <button class="btn-primary-1" type = "submit" routerLink="/signin" *ngIf = "!remember" routerLinkActive="active">Войти</button>
+        <button class="btn-primary-1" type = "submit" (click) = "getToken()" (click) = "login()">Войти</button>
+        <button class="btn-primary-1" type = "submit" routerLink="/signin" routerLinkActive="active">Зарегистрироваться</button>
     </div>

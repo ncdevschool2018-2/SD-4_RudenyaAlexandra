@@ -32,25 +32,11 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "comment_id")
-    private Comment comment;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private List<Comment> comment;
 
     public Product() {
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", name='" + name + '\'' +
-                ", cost=" + cost +
-                ", longDescription='" + longDescription + '\'' +
-                ", shortDescription='" + shortDescription + '\'' +
-                ", image='" + image + '\'' +
-                ", category=" + category +
-                ", comment=" + comment +
-                '}';
     }
 
     @Override
@@ -129,11 +115,11 @@ public class Product {
         this.category = category;
     }
 
-    public Comment getComment() {
+    public List<Comment> getComment() {
         return comment;
     }
 
-    public void setComment(Comment comment) {
+    public void setComment(List<Comment> comment) {
         this.comment = comment;
     }
 }

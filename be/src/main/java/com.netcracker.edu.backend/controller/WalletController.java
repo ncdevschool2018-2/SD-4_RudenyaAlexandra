@@ -2,6 +2,7 @@ package com.netcracker.edu.backend.controller;
 
 import com.netcracker.edu.backend.entity.Wallet;
 import com.netcracker.edu.backend.service.WalletService;
+import com.netcracker.edu.backend.service.impl.ChargeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ import java.util.Optional;
 public class WalletController {
 
     private WalletService  walletService;
+
+    @Autowired
+    private ChargeServiceImpl chargeService;
 
     @Autowired
     public WalletController(WalletService  walletService){

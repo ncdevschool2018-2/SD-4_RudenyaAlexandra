@@ -19,11 +19,13 @@ public class Subscribe {
     @Column(name = "end_date")
     private Date endDate;
 
-    @Column(name = "account_id")
-    private Long accountId;
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
+    @OneToOne
     @JoinColumn(name = "product_id")
-    private Long productId;
+    private Product product;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "feature_id")
@@ -33,37 +35,15 @@ public class Subscribe {
         return features;
     }
 
+    @Column(name = "status")
+    private boolean status;
+
     public void setFeatures(List<Feature> features) {
         this.features = features;
     }
 
 
     public Subscribe() {
-    }
-
-    public Subscribe(Date startDate, Date endDate, Long accountId, Long productId, List<Feature> features) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.accountId = accountId;
-        this.productId = productId;
-        this.features = features;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Subscribe subscribe = (Subscribe) o;
-        return Objects.equals(subscribeId, subscribe.subscribeId) &&
-                Objects.equals(startDate, subscribe.startDate) &&
-                Objects.equals(endDate, subscribe.endDate) &&
-                Objects.equals(productId, subscribe.productId) &&
-                Objects.equals(accountId, subscribe.accountId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(subscribeId, startDate, endDate, productId, accountId);
     }
 
     public Long getSubscribeId() {
@@ -90,19 +70,55 @@ public class Subscribe {
         this.endDate = endDate;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Subscribe(Date startDate, Date endDate, Account account, Product product, List<Feature> features, boolean status) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.account = account;
+        this.product = product;
+        this.features = features;
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Subscribe subscribe = (Subscribe) o;
+        return status == subscribe.status &&
+                Objects.equals(subscribeId, subscribe.subscribeId) &&
+                Objects.equals(startDate, subscribe.startDate) &&
+                Objects.equals(endDate, subscribe.endDate) &&
+                Objects.equals(account, subscribe.account) &&
+                Objects.equals(product, subscribe.product) &&
+                Objects.equals(features, subscribe.features);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(subscribeId, startDate, endDate, account, product, features, status);
     }
 }

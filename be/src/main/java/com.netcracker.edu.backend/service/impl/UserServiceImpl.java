@@ -1,9 +1,12 @@
 package com.netcracker.edu.backend.service.impl;
 
+import com.netcracker.edu.backend.entity.Product;
 import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.repository.UserRepository;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +52,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Long id) {
         this.repository.deleteById(id);
+    }
+
+    @Override
+    public Page<User> getUserPage(Pageable pageable) {
+        return this.repository.findAll(pageable);
     }
 }

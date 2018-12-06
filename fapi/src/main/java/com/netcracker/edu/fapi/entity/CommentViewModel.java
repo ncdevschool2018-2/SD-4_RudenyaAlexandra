@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CommentViewModel {
+
     private Long commentId;
     private String text;
+    private Long productId;
 
     public Long getCommentId() {
         return commentId;
@@ -21,5 +23,13 @@ public class CommentViewModel {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }
