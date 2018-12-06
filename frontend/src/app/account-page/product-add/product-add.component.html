@@ -1,0 +1,28 @@
+<div class = "col-md-6 col-md-offset-3 conteiner well">
+            <div class="form-group">
+                <label>Имя продукта</label>
+                <input class="form-control" [(ngModel)]= "product.editProduct.name" #name="ngModel"required />
+            </div>
+            <div class="form-group">
+                <label>Стоимость продукта</label>
+                <input class="form-control" [(ngModel)]="product.editProduct.cost" #cost="ngModel" required/>
+            </div>
+            <div class="form-group">
+                    <label>Описание</label>
+                    <input class="form-control" [(ngModel)]="product.editProduct.longDescription" #long="ngModel" required/>
+            </div>
+            <div class="form-group">
+                    <label>Короткое описание</label>
+                    <input class="form-control" [(ngModel)]="product.editProduct.shortDescription" #short ="ngModel" required/>
+            </div>
+            <div class="form-group">
+                <label>Путь к файлу</label>
+                <input class="form-control" [(ngModel)]="product.editProduct.image" #image="ngModel" required/>
+            </div>
+            <div *ngFor = "let c of category.categoryMas " class = "btn-group btn-group-toggle" ngRadioGroup name = "readioBasic" [(ngModel)] = "model">
+                <label>
+                    <input ngbButton type = "radio" [value] = "c.categoryId">{{c.nameCategory}}
+                </label>
+            </div>
+            <button class="btn-primary-1" type = "submit" (click) = "product._addProduct()">Добавить продукт</button>
+    </div>
