@@ -2,12 +2,14 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.UserViewModel;
 import com.netcracker.edu.fapi.service.UserDataService;
+import com.netcracker.edu.fapi.service.impl.RestPageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -47,5 +49,11 @@ public class UserDataController {
     public void deleteUser(@PathVariable String id) {
         usersDataService.deleteUser(Long.valueOf(id));
     }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<RestPageImpl<UserViewModel>> getUserPage(HttpServletRequest request) {
+        return ResponseEntity.ok(usersDataService.getPage(request));
+    }
+
 
 }

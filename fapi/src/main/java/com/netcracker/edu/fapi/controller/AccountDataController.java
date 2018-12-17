@@ -2,10 +2,12 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.AccountViewModel;
 import com.netcracker.edu.fapi.service.AccountDataService;
+import com.netcracker.edu.fapi.service.impl.RestPageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -37,4 +39,10 @@ public class AccountDataController {
     public void deleteAccount(@PathVariable String id) {
         accountDataService.deleteAccount(Long.valueOf(id));
     }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<RestPageImpl<AccountViewModel>> getUserPage(HttpServletRequest request) {
+        return ResponseEntity.ok(accountDataService.getAccountPage(request));
+    }
+
 }

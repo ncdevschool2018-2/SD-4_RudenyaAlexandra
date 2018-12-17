@@ -1,21 +1,20 @@
-<div class = "container col-sm-6">
+<ng4-loading-spinner> </ng4-loading-spinner>
+<div class = "container col-md-12">
     <table class="table panel-style style">
         <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Имя</th>
-          <th scope="col">Фамилия</th>
-          <th scope="col">Дата регистрации</th>
-          <th scope="col">Логин</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">The registration date</th>
+          <th scope="col">Login</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let a of accounts.userAccount">
-          <td scope="row">{{ a.accountId }}</td>
-          <td scope="row">{{ a.firstName}}</td>
-          <td scope="row">{{ a.lastName }}</td>
-          <td scope="row">{{ a.registrationDate }}</td>
-          <td scope="row">{{ a.userId.login }}</td>
+        <tr *ngFor="let u of users">
+          <td scope="row">{{ u.account.firstName }}</td>
+          <td scope="row">{{ u.account.lastName }}</td>
+          <td scope="row">{{ u.account.registrationDate }}</td>
+          <td scope="row"><a>{{ u.login }}</a></td>
         </tr>
         </tbody>
     </table>

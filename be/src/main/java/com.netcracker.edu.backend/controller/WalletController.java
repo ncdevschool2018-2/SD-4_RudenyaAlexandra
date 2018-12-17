@@ -1,5 +1,6 @@
 package com.netcracker.edu.backend.controller;
 
+import com.netcracker.edu.backend.entity.UpdateBalance;
 import com.netcracker.edu.backend.entity.Wallet;
 import com.netcracker.edu.backend.service.WalletService;
 import com.netcracker.edu.backend.service.impl.ChargeServiceImpl;
@@ -49,4 +50,22 @@ public class WalletController {
         this.walletService.deleteWallet(id);
         return ResponseEntity.noContent().build();
     }//ответ
+
+    @RequestMapping(value = "/updateBalance", method = RequestMethod.POST)//сопоставление запросов
+    public void topUpBalanceWallet(@RequestBody UpdateBalance updateBalance){
+        this.walletService.topUpBalance(updateBalance);
+    }
+
+    @RequestMapping(value = "/get/{accountId}", method = RequestMethod.GET)//сопоставление запросов
+    public ResponseEntity<Wallet> getWalletByAccountId(@PathVariable(name = "accountId") Long accountId){
+        Optional<Wallet> wallet = walletService.getWalletByAccountId(accountId);
+        if(wallet.isPresent()){
+            return ResponseEntity.ok(wallet.get());
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+    }//ответ
+
+
 }

@@ -14,11 +14,11 @@ import { AccountActivate } from './activateAccount';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: MainPageComponent},
-  {path: 'signin', component: SigninComponent},
+  {path: 'signin', component: SigninComponent, canActivate: [ LoginActivate ]},
   {path: 'login', component: LoginComponent, canActivate: [ LoginActivate ]},
   {path: 'contact', component: FooterComponent },
   {path: 'account', component: AccountPageComponent, canActivate: [ AccountActivate ]},
-  {path: 'product', component: ProductComponent },
+  {path: 'product/:id' , component: ProductComponent },
   {path: 'products', component: CategoryProductComponent},
   {path: '**', component: NotFoundedComponent}
 ];

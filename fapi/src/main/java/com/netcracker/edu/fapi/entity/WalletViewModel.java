@@ -1,20 +1,45 @@
 package com.netcracker.edu.fapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.CreditCardNumber;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WalletViewModel {
+
     private Long walletId;
+    @CreditCardNumber
+    @NotBlank
     private Long cardNumber;
+    @Size(min = 3)
+    @NotBlank
     private Integer CVV;
+    @Size(min = 3)
+    @NotBlank
     private String cardValidityPeriod;
     private Integer currency;
     private Long balance;
+    @NotBlank
     private Long accountId;
 
     public WalletViewModel() {
+    }
+
+    public WalletViewModel(Long walletId, @CreditCardNumber @NotBlank Long cardNumber, @Size(min = 3)
+    @NotBlank Integer CVV, @Size(min = 3)
+    @NotBlank String cardValidityPeriod, Integer currency, Long balance, @NotBlank Long accountId) {
+        this.walletId = walletId;
+        this.cardNumber = cardNumber;
+        this.CVV = CVV;
+        this.cardValidityPeriod = cardValidityPeriod;
+        this.currency = currency;
+        this.balance = balance;
+        this.accountId = accountId;
     }
 
     public Long getWalletId() {

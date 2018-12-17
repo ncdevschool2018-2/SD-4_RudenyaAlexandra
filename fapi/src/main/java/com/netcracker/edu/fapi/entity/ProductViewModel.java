@@ -2,14 +2,22 @@ package com.netcracker.edu.fapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductViewModel {
     private Long productId;
+    @NotBlank
+    @Size(min = 2)
     private String name;
+    @NotBlank
     private Integer cost;
+    @NotBlank
     private String longDescription;
+    @NotBlank
     private String shortDescription;
     private String image;
     private CategoryViewModel category;

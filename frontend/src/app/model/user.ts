@@ -4,6 +4,6 @@ export class User {
     userId: number;
     login: string;
     password: string;
-    public role: Role;
-    public account: Account;
+    role: Role;
+    account: Account;
 }

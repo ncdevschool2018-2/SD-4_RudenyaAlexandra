@@ -12,8 +12,12 @@ import { CommentUserComponent } from './commentUser/commentUser.component';
 import { AdminUserAccountComponent } from './userAccountForAdmin/userAccountForAdmin.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import {AddProductComponent} from './product-add/product-add.component';
-import { FormsModule} from '@angular/forms';
- 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [
     AccountPageComponent, MenuAccountComponent, SubscribeComponent, WalletComponent, SettingComponent, CommentUserComponent,
@@ -21,7 +25,8 @@ import { FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule, FormsModule
+    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
+    Ng4LoadingSpinnerModule.forRoot(), BsDropdownModule.forRoot(), TooltipModule.forRoot(), ModalModule.forRoot()
   ],
   exports: [
     AccountPageComponent, MenuAccountComponent, SubscribeComponent,  WalletComponent, SettingComponent, CommentUserComponent,

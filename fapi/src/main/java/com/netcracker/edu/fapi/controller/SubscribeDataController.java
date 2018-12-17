@@ -2,10 +2,12 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.SubscribeViewModel;
 import com.netcracker.edu.fapi.service.SubscribeDataService;
+import com.netcracker.edu.fapi.service.impl.RestPageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -36,8 +38,19 @@ public class SubscribeDataController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteSubscribe(@PathVariable String id) {
-
         subscribeDataService.deleteSubscribe(Long.valueOf(id));
     }
+
+    @RequestMapping(value = "/getByAccount/{accountId}", method = RequestMethod.GET)
+    public ResponseEntity<List<SubscribeViewModel>> getSubscribeByAccountId(@PathVariable(name = "accountId") Long accountId) {
+        return ResponseEntity.ok(subscribeDataService.getSubscribeByAccountId(accountId));
+    }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<RestPageImpl<SubscribeViewModel>> getSubscribePage(HttpServletRequest request) {
+        return ResponseEntity.ok(subscribeDataService.getPage(request));
+    }
+
+
 
 }

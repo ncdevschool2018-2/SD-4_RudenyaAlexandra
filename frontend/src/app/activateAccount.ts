@@ -17,6 +17,7 @@ export class AccountActivate implements CanActivate {
             if (this.tokenStorage.getToken() !== null) {
               return true;
             }
+            this.router.navigateByUrl('/home');
             return false;
     }
 }

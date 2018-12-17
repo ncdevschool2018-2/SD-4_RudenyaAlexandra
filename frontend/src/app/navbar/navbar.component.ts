@@ -19,17 +19,14 @@ interface Link {
 // спросить про output и input
 export class NavbarComponent implements OnInit {
 
-    public isUser = false;
-    public isAdmin = false;
-    public isNull = false;
-    links: Link[] = [
-        {name: 'Главная', url: '/home'},
-    ];
+    isUser = false;
+    isAdmin = false;
+    isNull = false;
 
-
-    public categories = new CategoryData(this.categoryService);
+    categories = new CategoryData(this.categoryService);
     ngOnInit(): void {
         this.getRoleUser();
+        this.categories.ngOnInit();
     }
     constructor(private categoryService: CategoryService,  private token: TokenStorage, public authService: AuthService) {
     }

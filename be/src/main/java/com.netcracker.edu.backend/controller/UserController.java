@@ -36,10 +36,10 @@ public class UserController {
         }
     }//ответ
 
-    @RequestMapping(value = "", method = RequestMethod.GET)//сопоставление запросов
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<User> getAllUser(){
         return userService.getAllUser();
-    }//ответ
+    }
 
     @RequestMapping(method = RequestMethod.POST)//сопоставление запросов
     public User saveUser(@RequestBody User user){

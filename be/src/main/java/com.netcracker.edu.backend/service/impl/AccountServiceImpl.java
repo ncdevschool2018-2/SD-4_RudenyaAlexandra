@@ -4,6 +4,8 @@ import com.netcracker.edu.backend.entity.Account;
 import com.netcracker.edu.backend.repository.AccountRepository;
 import com.netcracker.edu.backend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -39,5 +41,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void deleteAccount(Long id) {
         this.repository.deleteById(id);
+    }
+
+    @Override
+    public Page<Account> getAccountPage(Pageable pageable) {
+        return this.repository.findAll(pageable);
     }
 }

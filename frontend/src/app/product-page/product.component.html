@@ -1,26 +1,27 @@
-<div class = "container col-md-12" >
+<ng4-loading-spinner spinnerType="big"></ng4-loading-spinner>
+<div class = "container col-md-12" *ngIf = "product.isLoad">
     <div class = "col-xs-4 col-xs-offset-1">
         <div class="panel panel-info panel-style">
-        <div class="panel-body">
-        <img class = "col-xs-12" src = "../../assets/img/4.3.jpg">
-        <!--<img class = "col-xs-12" [src] = 'p[0].image' >-->
-        </div>
-        <div class="panel-footer">
-        <button class = "button-style col-xs-offset-4">Подписаться</button>
-        </div>
+            <div class="panel-body">
+            <img class = "col-xs-12" src = "../../assets/img/4.3.jpg">
+            </div>
+            <div class="panel-footer">
+            <button class = "button-style col-xs-offset-4" [disabled] = "disabled()" (click) = "subscribe()">Subscribe</button>
+            <button class = "button-style col-xs-offset-4" (click) = "goBack()">Go back</button>
+            </div>
         </div>
     </div>
-    
     <div class = "col-xs-5 col-xs-offset-1">
-        <p class = "longDescription">{{ product.productById.longDescription }}</p>
+        <p class = "longDescription"> {{ product.productMas[this.idProduct].longDescription }}</p>
     </div>
-        <!--<input placeholder = "Прокомментируйте..." class="comment-style" [(ngModel)]="comment.editComment.text" required/>
-        <button class= "btn-style" (click) = "comment._addComment()" >Отправить</button>
+   <!-- <div>
+        <input placeholder = "Прокомментируйте..." class="comment-style" [(ngModel)]="comment.editComment.text" required/>
+        <button class= "btn-style" (click) = "comment._addComment()" >Send</button>
      </div>
-     <div class = "col-md-8 style well" *ngIf=" product.productById.commentId != null">
+     <div class = "col-md-8 style well" *ngIf="product.productMas[indexSearch()].comment.commentId != null">
         <img class = "col-md-2" src = "../../../assets/img/4.2.jpg">
-        <p class = "name">Логин пользователя</p>
-        <h3>{{ product.productById.commentId}}</h3>
-        <button class= "btn-style1" (click) = "comment._deleteComment(4)">Удалить</button>
+        <p class = "name"></p>
+        <h3>{{ product.productMas[indexSearch()].comment.commentId }}</h3>
+        <button class= "btn-style1" (click) = "comment._deleteComment(product.productMas[indexSearch()].comment.commentId)">Delete</button>
      </div>-->
 </div>

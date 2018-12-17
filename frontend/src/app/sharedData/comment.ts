@@ -9,6 +9,7 @@ export class CommentData implements OnInit, OnDestroy {
     public comments: Comment[];
     public commentById: Comment;
     public subscription: Subscription[] = [];
+    isLoad = false;
     constructor(private commentService: CommentService) {}
 
 
@@ -19,8 +20,8 @@ export class CommentData implements OnInit, OnDestroy {
 
     public _loadComment() {
         this.subscription.push(this.commentService.getComment().subscribe( comment => {
-            this.comments = comment as Comment[];
-            console.log(comment);
+            this.comments = comment;
+            this.isLoad = true;
         }));
     }
 
@@ -46,8 +47,10 @@ export class CommentData implements OnInit, OnDestroy {
     }
 
     public _getCommentById(id: number) {
+        
         this.subscription.push(this.commentService.getCommentById(id).subscribe( comment => {
-            this.commentById = comment as Comment;
+            this.commentById = comment;
+            this.isLoad = true;
         }));
     }
 }

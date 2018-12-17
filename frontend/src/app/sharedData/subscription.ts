@@ -2,47 +2,60 @@ import { OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import {Subscribe} from '../model/subscribe';
 import { SubscribeService } from '../service/subscribe.service';
+import { Account } from '../model/account';
+import { Product } from '../model/product';
+import { Comment } from '../model/comment';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 export class SubscribeData implements OnInit, OnDestroy {
 
-    public editSubscribe: Subscribe = new Subscribe();
-    public subscribe: Subscribe[];
+    editSubscribe: Subscribe = new Subscribe();
+    subscribe: Subscribe[];
     private subscriptions: Subscription[] = [];
+    subscribeByAccountId: Subscribe[];
+    isLoad = false;
 
-    constructor(private subscribeService: SubscribeService) {}
+    constructor(private subscribeService: SubscribeService, private loading: Ng4LoadingSpinnerService) {
+      this.editSubscribe.account = new Account();
+      this.editSubscribe.product = new Product();
+    }
+
     ngOnInit() {
         this.loadSubscribe();
       }
 
-      public _addSubscribe(): void {
+      _addSubscribe(): void {
+        this.loading.show();
           this.subscriptions.push(this.subscribeService.saveSubscribe
             (this.editSubscribe).subscribe(() => {
                 this._updateSubscribe();
                 this.refreshSubscribe();
+                this.loading.hide();
             }));
       }
 
-      public _updateSubscribe(): void {
+      _updateSubscribe(): void {
           this.loadSubscribe();
       }
 
-      private refreshSubscribe(): void {
+     refreshSubscribe(): void {
           this.editSubscribe = new Subscribe();
       }
 
-      public _deleteSubscribe(subscribe_id: number): void {
+      _deleteSubscribe(subscribe_id: number): void {
         this.subscriptions.push(this.subscribeService.deleteSubscribe(subscribe_id).subscribe(() => {
           this._updateSubscribe();
           this.refreshSubscribe();
         }));
       }
 
-      private loadSubscribe(): void {
+      loadSubscribe(): void {
+        this.loading.show();
         // Get data from BillingAccountService
         this.subscriptions.push(this.subscribeService.getSubscribe().subscribe(accounts => {
-          // Parse json response into local array
-          this.subscribe = accounts as Subscribe[];
-          // Check data in console
-          console.log(this.subscribe); // don't use console.log in angular :)
+          this.subscribe = accounts;
+          this.isLoad = true;
+          this.loading.hide();
         }));
       }
 

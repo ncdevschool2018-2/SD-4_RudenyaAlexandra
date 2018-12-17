@@ -1,41 +1,47 @@
-<div class = "container well col-md-3 col-md-offset-4" *ngIf="registerForm">
-  <h1 class = "text-style">Регистрация</h1>
+
+<div class = "container well col-md-3 col-md-offset-4" *ngIf="registerForm && this.user.isLoad">
+  <h1 class = "text-style">Sign in</h1>
   <form [formGroup]="registerForm" (ngSubmit) = "onSubmit()">
     <div class="form-group">
-      <label>Фамилия</label>
+      <label>Last name</label>
       <input class = "form-control" type = "text" formControlName="lastName" />
       <div class = "error" *ngIf="isControlInvalid('login')">
-        Некорректные данные
+        Data invalid
       </div>
     </div>
     <div class="form-group">
-      <label>Имя</label>
+      <label>First name</label>
       <input class="form-control" type = "text" formControlName="firstName"/>
       <div class = "error" *ngIf="isControlInvalid('login')">
-        Некорректные данные
+        Data invalid
       </div>
     </div>
   <div class="form-group">
-      <label>Email</label>
+      <label>Login</label>
       <input type="text" formControlName="login" class="form-control" />
-      <div class = "error" *ngIf="isControlInvalid('login')">
-        Некорректный логин
+      <div class = "error" *ngIf ="isControlInvalid('login')">
+          Your login must be minimum 6 characters long
       </div>
+      <div class = "error" *ngIf ="isLoginValidator('login')">
+        The selected login is already in use. Please select another one.
+    </div>
     </div>
     <div class="form-group">
-        <label>Пароль</label>
+        <label>Password</label>
         <input type="password" formControlName="password" class="form-control"  />
-        <div class = "error" *ngIf="isControlInvalid('login')">
-           Пароль должен быть не меньше 8 символов
+        <div class = "error" *ngIf="isControlInvalid('password')">
+            Your password must be minimum 8 characters long,
+            include a number, include an uppercase letter, 
+            and a lowercase letter
         </div>
     </div>
     <div class="form-group">
-        <label>Повторить пароль</label>
+        <label>Confirm Password</label>
         <input type="password" formControlName="confirmPassword" class="form-control" />
-        <div class = "error" *ngIf="isControlInvalid('login')">
-            Пароли не соответсвуют
+        <div class = "error" *ngIf="isControlInvalid('confirmPassword')">
+            Password field and repeat password field must be identical.
          </div>
     </div>
-    <button [disabled] = "false" type="submit" class="btn-primary-1" (click) = "submit()">Зарегистрироваться</button>
+    <button [disabled] = "isInvalid()" type="submit" class="btn-primary-1" (click) = "getToken()">Sign in</button>
   </form>
   </div>

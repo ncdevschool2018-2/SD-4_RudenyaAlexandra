@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+import static com.netcracker.edu.backend.repository.specification.ProductSpecification.productByIdCategory;
 @Component
 public class ProductServiceImpl implements ProductService {
 
@@ -47,5 +47,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> getProductPage(Pageable pageable) {
         return this.repository.findAll(pageable);
+    }
+
+    @Override
+    public Iterable<Product> getProductByCategoryId(Integer id) {
+        return this.repository.findAll(productByIdCategory(id));
     }
 }

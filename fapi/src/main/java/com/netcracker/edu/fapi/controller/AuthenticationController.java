@@ -18,11 +18,15 @@ import javax.naming.AuthenticationException;
 @RequestMapping("/token")
 public class AuthenticationController {
 
-    @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    public AuthenticationController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil) {
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
 
     @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
@@ -39,7 +43,6 @@ public class AuthenticationController {
     @RequestMapping(value = "/expDate", method = RequestMethod.GET)
     public ResponseEntity<?> GetExpDate(@PathVariable String token){
         token = token.replace(Constants.TOKEN_PREFIX, "");
-//        System.out.println(System.currentTimeMillis());
         return ResponseEntity.ok(jwtTokenUtil.getExpirationDateFromToken(token));
     }
 

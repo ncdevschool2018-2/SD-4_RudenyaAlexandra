@@ -1,16 +1,16 @@
+<ng4-loading-spinner spinnerType="big"></ng4-loading-spinner>
 <div class="col-sm-6">
     <table class="table panel-style">
         <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Начало подписки</th>
-          <th scope="col">Конец подписки</th>
-          <th scope="col">Изображение подписки</th>
+          <th scope="col">Subscribe name</th>
+          <th scope="col">Start date subscribe</th>
+          <th scope="col">End date subscribe</th>
         </tr>
         </thead>
-        <tbody>
-        <tr *ngFor="let s of subscribes.subscribe">
-          <td scope="row">{{ s.subscribeId }}</td>
+        <tbody *ngFor="let s of subscribeByAccountId">
+        <tr>
+          <td scope="row"><a>{{ s.product.name}}</a></td>
           <td scope="row">{{ s.startDate }}</td>
           <td scope = "row">{{ s.endDate }}</td>
         </tr>

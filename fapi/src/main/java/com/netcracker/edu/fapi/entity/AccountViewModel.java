@@ -2,6 +2,9 @@ package com.netcracker.edu.fapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -9,24 +12,34 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountViewModel {
     private Long accountId;
+    @Size(min = 2, max = 20)
     private String lastName;
+    @Size(min = 2, max = 20)
     private String firstName;
-    private LocalDate registrationDate;
+    @NotBlank
+    @Pattern(regexp="yyyy-MM-dd")
+    private Date registrationDate;
     private String imageProfile;
-    //private UserViewModel user;
-    private List<WalletViewModel> wallets;
-    private List<SubscribeViewModel> subscriptions;
+    @NotBlank
+    private Object user;
+    private Object wallets;
+    private List<Object> subscribes;
 
     public AccountViewModel() {
     }
 
-    /*public UserViewModel getUser() {
-        return user;
-    }
-
-    public void setUser(UserViewModel user) {
+    public AccountViewModel(Long accountId, @Size(min = 2, max = 20) String lastName, @Size(min = 2, max = 20)
+            String firstName, @NotBlank @Pattern(regexp = "yyyy-MM-dd") Date registrationDate,
+                            String imageProfile, @NotBlank Object user, Object wallets, List<Object> subscribes) {
+        this.accountId = accountId;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.registrationDate = registrationDate;
+        this.imageProfile = imageProfile;
         this.user = user;
-    }*/
+        this.wallets = wallets;
+        this.subscribes = subscribes;
+    }
 
     public Long getAccountId() {
         return accountId;
@@ -52,11 +65,11 @@ public class AccountViewModel {
         this.firstName = firstName;
     }
 
-    public LocalDate getRegistrationDate() {
+    public Date getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(LocalDate registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
@@ -68,19 +81,27 @@ public class AccountViewModel {
         this.imageProfile = imageProfile;
     }
 
-    public List<WalletViewModel> getWallets() {
+    public Object getUser() {
+        return user;
+    }
+
+    public void setUser(Object user) {
+        this.user = user;
+    }
+
+    public Object getWallets() {
         return wallets;
     }
 
-    public void setWallets(List<WalletViewModel> wallets) {
+    public void setWallets(Object wallets) {
         this.wallets = wallets;
     }
 
-    public List<SubscribeViewModel> getSubscriptions() {
-        return subscriptions;
+    public List<Object> getSubscribes() {
+        return subscribes;
     }
 
-    public void setSubscriptions(List<SubscribeViewModel> subscriptions) {
-        this.subscriptions = subscriptions;
+    public void setSubscribes(List<Object> subscribes) {
+        this.subscribes = subscribes;
     }
 }

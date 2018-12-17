@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.service.impl;
 
+import com.netcracker.edu.fapi.entity.UpdateBalanceData;
 import com.netcracker.edu.fapi.entity.WalletViewModel;
 import com.netcracker.edu.fapi.service.WalletDataService;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,4 +48,24 @@ public class WalletDataServiceImpl implements WalletDataService {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/wallet/" + id);
     }
+
+    @Override
+    public void topUpBalance(UpdateBalanceData updateBalanceData) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.postForEntity(backendServerUrl + "/api/wallet/updateBalance", updateBalanceData,
+                UpdateBalanceData.class);
+    }
+
+    @Override
+    public WalletViewModel getWalletByAccountId(Long accountId) {
+        RestTemplate restTemplate = new RestTemplate();
+        WalletViewModel walletViewModel = restTemplate.getForObject(backendServerUrl + "/api/wallet/get/" +
+                accountId, WalletViewModel.class);
+        if (walletViewModel != null && walletViewModel.getAccountId() == accountId) {
+                    return walletViewModel;
+        }
+        return null;
+    }
+
+
 }

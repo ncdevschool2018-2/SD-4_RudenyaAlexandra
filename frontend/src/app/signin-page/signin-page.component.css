@@ -6,6 +6,10 @@ input.ng-touched.ng-valid {
     border: solid green 2px;
 }
 
+.errors {
+    border: solid red 2 px;
+}
+
 .disabled{
     cursor: not-allowed;
 }
@@ -15,6 +19,11 @@ input.ng-touched.ng-valid {
     background: white;
     border-color:cornflowerblue;
     box-shadow: 10px 10px 10px rgba(0,0,0,0.2);
+}
+
+.btn-primary-1:disabled {
+    cursor:not-allowed;
+    background-color:  rgb(104, 203, 236, 2);
 }
 
 .btn-primary-1{

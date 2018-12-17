@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import {CategoryProductComponent} from './category-product.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-
+import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
 @NgModule({
   declarations: [
     CategoryProductComponent
   ],
   imports: [
-    ButtonsModule.forRoot(), BrowserModule, FormsModule, AppRoutingModule, PaginationModule.forRoot()
+    ButtonsModule.forRoot(), BrowserModule, FormsModule, AppRoutingModule, PaginationModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   exports: [
     CategoryProductComponent

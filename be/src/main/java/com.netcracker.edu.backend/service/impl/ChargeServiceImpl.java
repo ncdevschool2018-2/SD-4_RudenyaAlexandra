@@ -25,20 +25,22 @@ public class ChargeServiceImpl implements ChargeService {
     @Autowired
     private SubscribeRepository subscribeRepository;
 
-    private List<Subscribe> subscribe;
+    private List<Subscribe> subscribe = new ArrayList<>();
 
-    @Scheduled (fixedRate = 5000)
+    //@Scheduled(fixedDelay = 5000)
     @Override
     public void scheduledCharge() {
         loadSubscription();
         decreaseAmount();
-        System.out.println("сняло");
+        System.out.println("+");
     }
 
     @Override
     public void loadSubscription() {
-        subscribe = new ArrayList<Subscribe>();
-        subscribe.addAll(subscribeRepository.findAll());
+        Iterable<Subscribe> iterableSubs = subscribeRepository.findAll();
+        for (Subscribe sub : iterableSubs) {
+            subscribe.add(sub);
+        }
     }
 
     @Override

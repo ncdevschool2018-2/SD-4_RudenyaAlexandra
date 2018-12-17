@@ -1,9 +1,9 @@
 <nav>
     <ul class="nav nav-justified">
-      <li><a (click)="clickButton('subscription')">Подписки</a></li>
-      <li><a (click)="clickButton('comment')">Мои комментарии</a></li>
-      <li *ngIf = "isAdmin"><a (click)="clickButton('users')">Пользователи</a></li> 
-      <li *ngIf = "isAdmin"><a (click)="clickButton('product')">Добавить продукт</a></li>
-      <li><a (click)="clickButton('balance')">Пополнение баланса</a></li>
+      <li><a (click)="clickButton('subscription')">Subscribe</a></li>
+      <!--<li><a (click)="clickButton('comment')">My comment</a></li>-->
+      <li *ngIf = "isAdmin"><a (click)="clickButton('users')">Users</a></li> 
+      <li *ngIf = "isAdmin"><a (click)="clickButton('product')">Add product</a></li>
+      <li><a (click)="clickButton('balance')">Recharge the balance</a></li>
     </ul>
 </nav>

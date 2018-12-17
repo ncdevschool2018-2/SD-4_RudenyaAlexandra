@@ -1,53 +1,81 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
+import { Product } from '../model/product';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Category } from '../model/category';
+import { Comment } from '../model/comment';
+import { Page } from '../model/page';
+
 
 export class ProductData implements OnInit, OnDestroy {
 
-    public editProduct: Product = new Product();
-    public products: Product[];
-    public productById:  Product;
-    public subscription: Subscription[] = [];
+    editProduct: Product = new Product();
+    productMas: Product[] = [];
+    productById:  Product;
+    private subscription: Subscription[] = [];
+    productByCategoryId: Product[];
+    isLoad = false;
+    constructor(private productService: ProductService, private loading: Ng4LoadingSpinnerService) {}
 
-    constructor(private productService: ProductService) {}
+    ngOnInit() {
+        this._loadProduct(); }
 
-    ngOnInit() { this._loadProduct(); }
-    ngOnDestroy() {}
 
-    public _loadProduct() {
+    _loadProduct() {
+        this.loading.show();
         this.subscription.push(this.productService.getProduct().subscribe( product => {
-            this.products = product as Product[];
-            console.log(product);
+            this.productMas = product;
+            this.editProduct.category = new Category();
+            this.editProduct.comment = new Comment();
+            this.isLoad = true;
+            this.loading.hide();
         }));
     }
 
-    public _updateProduct() {
+    _loadProductByCategoryId(id: number) {
+        this.loading.show();
+        this.subscription.push(this.productService.getProductByCategoryId(id).subscribe( product => {
+            this.productByCategoryId = product;
+            this.isLoad = true;
+            this.loading.hide();
+        }));
+    }
+
+    _updateProduct() {
         this._loadProduct();
     }
 
-    public _refreshProduct() {
+    _refreshProduct() {
         this.editProduct = new Product();
     }
 
-    public _deleteProduct(product_id: number) {
+     _deleteProduct(product_id: number) {
         this.subscription.push(this.productService.deleteProduct(product_id).subscribe( () => {
             this._updateProduct();
             this._refreshProduct();
         }));
     }
 
-    public _addProduct() {
+    _addProduct() {
+        this.loading.show();
         this.subscription.push(this.productService.saveProduct(this.editProduct).subscribe( () => {
             this._updateProduct();
             this._refreshProduct();
+            this.loading.hide();
         }));
     }
 
-    public _getProductById(id: number) {
+     _getProductById(id: number) {
+        this.loading.show();
         this.subscription.push(this.productService.getProductById(id).subscribe( product => {
             this.productById = product as Product;
+            this.isLoad = true;
+            this.loading.hide();
         }));
     }
+    ngOnDestroy(): void {
+        this.subscription.forEach(subscription => subscription.unsubscribe());
+      }
 }
 

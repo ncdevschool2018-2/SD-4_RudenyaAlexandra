@@ -2,11 +2,14 @@ package com.netcracker.edu.fapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.NotBlank;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CommentViewModel {
 
     private Long commentId;
     private String text;
+    @NotBlank
     private Long productId;
 
     public Long getCommentId() {

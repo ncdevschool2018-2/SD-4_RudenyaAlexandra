@@ -25,4 +25,7 @@ export class SubscribeService {
     getSubscribeById(subscribeId: number): Observable<Subscribe> {
         return this.http.get<Subscribe>('api/subscribe/' + subscribeId);
     }
+    getSubscribeByAccountId(accountId: number): Observable<Subscribe[]> {
+        return this.http.get<Subscribe[]>('api/subscribe/getByAccount/' + accountId);
+    }
 }

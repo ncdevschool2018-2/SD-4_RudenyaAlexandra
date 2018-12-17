@@ -6,22 +6,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class=" logo navbar-brand">Проект</a>
+        <a class=" logo navbar-brand">Project</a>
       </div>
   
       <div class="collapse navbar-collapse"  id="myNavbar">
         <ul class="nav navbar-nav" >
-          <li *ngFor="let l of links">
-            <a [routerLink]= 'l.url'>{{l.name}}</a>
+          <li>
+            <a routerLink= "/home">Home</a>
           </li>
-          <li><a dropdown>
+          <li><a dropdown >
               <a dropdownToggle (click)="false"
-                 aria-controls="basic-link-dropdown">Каталог</a>
-              <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
-                  role="menu" aria-labelledby="basic-link">
-                <li><!--*ngFor="let c of categories.categoryMas"-->
+                 aria-controls="basic-link-dropdown">Catalog</a>
+                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <li *ngFor="let c of categories.categoryMas">
                   <a class="divider dropdown-divider"></a>
-                  <a class="style-item dropdown-item" routerLink = "/products" ><!--{{ c.nameCategory }}-->Сашка-какашка</a>
+                  <a class="style-item dropdown-item" routerLink = "/products" >{{ c.nameCategory }}</a>
                 </li>
               </ul>
             </a>
@@ -29,10 +28,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-           <a  *ngIf= "isUser && !isAdmin && !isNull"  routerLink="/account" class="style-item account" >Мой аккаунт</a>
-            <a  *ngIf="isAdmin && !isUser && !isNull" routerLink= "/account"  class="style-item account" >Администратор</a>
-            <button  *ngIf="isNull" class = "style-button" routerLink = "/login" (click) = "ngOnInit()">Войти</button>
-            <button *ngIf="!isNull" class = "style-button" (click) = "authService.logout()" (click)= "ngOnInit()">Выйти</button></li>
+           <a  *ngIf= "isUser && !isAdmin && !isNull"  routerLink="/account" class="style-item account" >My account</a>
+            <a  *ngIf="isAdmin && !isUser && !isNull" routerLink= "/account"  class="style-item account" >Administrator</a>
+            <button  *ngIf="isNull" class = "style-button" routerLink = "/login" (click) = "ngOnInit()">Log in</button>
+            <button *ngIf="!isNull" class = "style-button" (click) = "authService.logout()" (click)= "ngOnInit()">Log out</button></li>
         </ul>
       </div>
     </div>

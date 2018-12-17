@@ -1,72 +1,64 @@
-<div class = "container-fluid">
-    <div class="row">
-        <div class="col-sm-2 style">
-            <div class="panel panel-default text-center style-panel" *ngFor="let w of wallets.walletMas" >
-                <div class="panel-body">
-                    <p><strong>Номер карточки: {{ w.cardNumber }}</strong></p>
-                    <p><strong>Срок действия: {{ w.cardValidityPeriod }}</strong></p>
-                </div>
-                <div class="panel-footer style-footer">
-                    <button class="btn btn-warning">Оплатить</button>
-                    <button class="btn btn-warning">Удалить</button>
-                </div>
-            </div>
-        </div>
- 
-        <div class = "container-fluid">
-        <div class="col-sm-5 well">
-                <h3>Заполните данные карточки</h3>
-                <br>
-                <form class = "needs-validation was-validated" novalidate>
-                    <div class="row">
-                        <div class = "col-md-6">
-                            <label for="firstName">Имя</label>
-                            <input type="text" class="form-control" id="firstName"
-                                   placeholder="Введите имя:" value="" required="">
-
-                        </div>
-                        <div class = "col-md-6">
-                            <label for="lastName">Фамилия</label>
-                            <input type="text" class="form-control" id="lastName"
-                                   placeholder="Введите фамилию:" value="" required="">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="cc-number">Номер карты</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="Номер карты:" required="">
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="cc-cvv">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="Код безопасности:" required="">
-
-                        </div>
-                    </div>
-                    <h3>Срок действия</h3>
-                    <div class="row">
-                        <div class="col-xs-12 col-12 col-md-6 form-group">
-                            <input placeholder="Введите дату: "
-                                class="form-control" >
-                        </div>
-                    </div>
-                    <div class = "style-radio">
-                        <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="saveWallet" name="wallet">
-                                <label class="custom-control-label" for="defaultGroupExample1">Сохранить данные</label>
-                        </div>
-                            
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="craeteWallet" name="wallet" checked>
-                            <label class="custom-control-label" for="defaultGroupExample2">Создать новый кошелек</label>
-                        </div>
-                        <br>
-                    </div>
-                    <button type="submit" class="btn btn-warning style-button" >
-                            Оплатить
-                    </button>
-                </form>
-            </div>
-    </div>
+<diV *ngIf= "this.wallets.isLoad">
+  <div class="col">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            (click)="_openModal(template)">
+      Create new billing account
+    </button>
 </div>
+<diV *ngIf= "this.wallets.isLoad">
+        <div class="col">
+            <p>{{ this.wallets.walletByAccounId.balance}}</p>
+      </div>
+<form [formGroup] = "walletForm" (ngSubmit) = "onSubmit()">
+    <div class="col-md-6">
+        <label>Balance</label>
+        <input type="text" class="form-control" formControlName="money" id="money">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="this.topUpMoney()">
+        Пополнить
+    </button>
+</form>
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Create new wallet</h4>
+    </div>
+    <div class="modal-body">
+            <form [formGroup] = "walletForm" (ngSubmit) = "onSubmit()">
+                <div class = "container-fluid">
+                <div class="col-sm-10">
+                        <h3>Please fill in this form</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Card number</label>
+                                    <input type="text" class="form-control" formControlName="cardNumber" id="cardNumber">
+                                    <div class = "error" *ngIf="isControlInvalid('cardNumber')">
+                                        Data invalid, card number must be minimum 16 characters long
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>CVV</label>
+                                    <input type="text" class="form-control" formControlName="cvv" placeholder="Security code.:" >
+                                    <div class = "error" *ngIf="isControlInvalid('cvv')">
+                                        Security code don't include letter, only number
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Validity of the card</h3>
+                            <div class="row">
+                                <div class="col-xs-12 col-12 col-md-6 form-group">
+                                    <input class="form-control" formControlName="cardValidityPeriod">
+                                </div>
+                                <div class = "error" *ngIf="isControlInvalid('cardValidityPeriod')">
+                                    Security code don't include letter, only number
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-warning style-button" (click) = "addWallet()" >Pay</button>
+        <button type="submit" class="btn btn-warning style-button" data-dismiss="modal" (click)="_closeModal()">Close</button>
+    </div>
+</ng-template>
+</diV>

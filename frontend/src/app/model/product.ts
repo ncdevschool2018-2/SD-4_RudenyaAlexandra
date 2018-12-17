@@ -1,5 +1,6 @@
 import { Category } from './category';
 import {Comment} from './comment';
+
 export class Product {
     productId: number;
     name: string;

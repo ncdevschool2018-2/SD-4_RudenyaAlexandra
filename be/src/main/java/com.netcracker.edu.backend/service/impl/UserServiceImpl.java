@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> findByLogin(String login) {
-
         return this.repository.findByLogin(login);
     }
 

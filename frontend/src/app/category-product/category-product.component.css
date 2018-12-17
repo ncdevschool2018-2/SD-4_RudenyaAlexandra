@@ -26,11 +26,13 @@
     font-size: 24px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left: 100px;
-    margin-top: 30px;
+    margin-top: 150px;
 }
 
 .button-style {
-    margin-left: 900px;
+    margin-top: 20px;
+    margin-left: 100px;
+    float: left;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 24px;
     border-color: rgb(241, 75, 75);

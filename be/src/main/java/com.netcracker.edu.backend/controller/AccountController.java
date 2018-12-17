@@ -3,6 +3,10 @@ package com.netcracker.edu.backend.controller;
 import com.netcracker.edu.backend.entity.Account;
 import com.netcracker.edu.backend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +49,10 @@ public class AccountController {
         this.accountService.deleteAccount(id);
         return ResponseEntity.noContent().build();
     }//ответ
+
+    @RequestMapping(value = "/page" , method = RequestMethod.GET)
+    public Page<Account> getPage(@PageableDefault( sort = {"accountId"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        return this.accountService.getAccountPage(pageable);
+    }
 
 }

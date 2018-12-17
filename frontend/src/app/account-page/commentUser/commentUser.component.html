@@ -1,16 +1,17 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <div class = "container col-sm-6">
     <table class="table panel-style style">
         <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Комментарий</th>
+          <th scope="col">Comment</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let c of comments.comments">
-          <td scope="row">{{ c.commentId }}</td>
-          <td scope="row">{{ c.text }}</td>
-          <button class = "btn-style1" (click) = "comments._deleteComment(c.commentId)">Удалить</button>
+        <tr *ngFor="let s of subscribe.subscribe">
+          <td scope="row">{{ s.product.comment }}</td>
+          <td scope="row">{{ s.product.comment.text }}</td>
+          <button class = "btn-style1" (click) = "comments._deleteComment(s.product.comment.commentId)">Delete</button>
         </tr>
         </tbody>
     </table>

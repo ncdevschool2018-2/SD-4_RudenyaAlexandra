@@ -2,7 +2,6 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.ProductViewModel;
 import com.netcracker.edu.fapi.service.ProductDataService;
-import com.netcracker.edu.fapi.service.impl.RestPageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +40,13 @@ public class ProductDataController {
         productDataService.deleteProduct(Long.valueOf(id));
     }
 
+    @RequestMapping(value = "/category/{id}")
+    public ResponseEntity<List<ProductViewModel>> getProductByCategoryId(@PathVariable(name = "id") Integer id) {
+        return ResponseEntity.ok(productDataService.getProductByCategoryId(id));
+    }
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ResponseEntity<PageImpl<ProductViewModel>> getProductPage(HttpServletRequest request) {
-        return ResponseEntity.ok(productDataService.getPageProduct(request));
+        return ResponseEntity.ok(productDataService.getProductPage(request));
     }
 
 }

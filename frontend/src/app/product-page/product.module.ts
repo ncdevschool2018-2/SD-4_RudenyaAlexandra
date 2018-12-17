@@ -7,6 +7,7 @@ import { CommentComponent } from './comment/comment.component';
 import { ProductComponent } from './product.component';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule, FormsModule, PaginationModule.forRoot()
+    AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule, FormsModule, PaginationModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [],
   bootstrap: [],

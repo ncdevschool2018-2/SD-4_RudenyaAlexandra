@@ -4,6 +4,9 @@ import com.netcracker.edu.fapi.entity.UserViewModel;
 import com.netcracker.edu.fapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Service("userDataService")
@@ -67,6 +71,15 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
     public void deleteUser(Long id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/users/" + id);
+    }
+
+    @Override
+    public RestPageImpl<UserViewModel> getPage(HttpServletRequest request) {
+            RestTemplate restTemplate = new RestTemplate();
+            return restTemplate.exchange(backendServerUrl + "/api/users/page?" + request.getQueryString(),
+            HttpMethod.GET, null,
+            new ParameterizedTypeReference<RestPageImpl<UserViewModel>>() {
+            }).getBody();
     }
 
     @Override

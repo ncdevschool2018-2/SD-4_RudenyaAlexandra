@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.print.Pageable;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -56,13 +57,21 @@ public class ProductDataServiceImpl implements ProductDataService {
         restTemplate.delete(backendServerUrl + "/api/product/" + id);
     }
 
+    //спросить про массив, почему не list?
     @Override
-    public PageImpl<ProductViewModel> getPageProduct(HttpServletRequest request) {
+    public List<ProductViewModel> getProductByCategoryId(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        ProductViewModel productViewModel[] = restTemplate.getForObject(backendServerUrl + "/api/product/category/"
+        + id, ProductViewModel[].class);
+        return productViewModel == null ? Collections.emptyList(): Arrays.asList(productViewModel);
+    }
+
+    @Override
+    public RestPageImpl<ProductViewModel> getProductPage(HttpServletRequest request) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.exchange(backendServerUrl + "/api/product/page?" + request.getQueryString(),
                 HttpMethod.GET, null,
-                new ParameterizedTypeReference<PageImpl<ProductViewModel>>(){})
+                new ParameterizedTypeReference<RestPageImpl<ProductViewModel>>(){})
                 .getBody();
     }
-
 }

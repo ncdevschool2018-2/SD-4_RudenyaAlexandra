@@ -1,9 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { CategoryData } from '../sharedData/category';
 import { CategoryService } from '../service/category.service';
 import { ProductData } from '../sharedData/product';
 import { ProductService } from '../service/product.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { Product } from '../model/product';
+import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Page } from '../model/page';
+import { PageData } from '../sharedData/page';
+import { PageService } from '../service/page';
 
 @Component ({
     selector: 'app-category-product',
@@ -13,27 +19,40 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 export class CategoryProductComponent implements OnInit, OnDestroy {
 
-    rotate = true;
-    contentArray = new Array(90).fill('');
-    returnedArray: string[];
-    public category = new CategoryData(this.categoryService);
-    public product = new ProductData(this.productService);
-
+    returnedArray: Product[];
+    category = new CategoryData(this.categoryService);
+    product = new ProductData(this.productService, this.loading);
+    pageProduct = new PageData<Product>(this.pageService, this.loading );
+    name = 'product';
     ngOnInit(): void {
+        this.loading.show();
+        this.pageProduct.getPageContent('product', 0, 4);
+        console.log();
         this.category.ngOnInit();
         this.product.ngOnInit();
-        this.contentArray = this.contentArray.map((v: string, i: number) => `Content line ${i + 1}`);
-        this.returnedArray = this.contentArray.slice(0, 10);
+    }
+
+    constructor(private pageService: PageService,
+        private router: Router, private categoryService: CategoryService,
+        private productService: ProductService, private loading: Ng4LoadingSpinnerService) {}
+
+    ngOnDestroy(): void {
+    }
+
+    getId(id: number): void {
+        let p: number;
+        for ( p = 0 ; p < this.product.productMas.length.valueOf(); p++) {
+            // tslint:disable-next-line:triple-equals
+            if (this.product.productMas[p].productId == id ) {
+                this.router.navigate([`/product/${p}`]);
+            }
+        }
     }
 
     pageChanged(event: PageChangedEvent): void {
-        const startItem = (event.page - 1) * event.itemsPerPage;
+        const startItem = (event.page) * event.itemsPerPage;
         const endItem = event.page * event.itemsPerPage;
-        this.returnedArray = this.contentArray.slice(startItem, endItem);
-    }
-
-    constructor( private categoryService: CategoryService, private productService: ProductService ) {}
-
-    ngOnDestroy(): void {
+        this.pageProduct.getPageContent(this.name, startItem, 4);
+       // this.returnedArray = this.pageProduct.pageContent.content;
     }
 }

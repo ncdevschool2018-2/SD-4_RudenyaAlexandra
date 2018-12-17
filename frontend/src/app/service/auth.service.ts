@@ -6,6 +6,7 @@ import { LoginUser } from '../model/loginUser';
 import { JwtDecode } from '../model/jwtDecode';
 import { Token } from '../model/token';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 const TOKEN_KEY = 'AuthToken';
@@ -17,12 +18,13 @@ export class AuthService {
     decodedJwt: any;
     decodeObj: JwtDecode;
 
-    constructor(private http: HttpClient, private token: TokenStorage, private router: Router) {}
+    constructor(private http: HttpClient, private token: TokenStorage, private router: Router, private location: Location) {}
 
     attempAuth(loginUser: LoginUser): Observable<any> {
         console.log('attempAuth ::');
         return this.http.post<Token>('/token/generate-token', loginUser);
     }
+
     public decodeJwt(token: string): any {
         // tslint:disable-next-line:prefer-const
         let encodedJwt = token.split('.')[1];
@@ -43,7 +45,7 @@ export class AuthService {
     }
 
     public logout() {
-        this.router.navigateByUrl('/login');
+        window.location.reload();
         this.signOut();
         localStorage.clear();
     }

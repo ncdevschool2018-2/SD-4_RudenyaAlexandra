@@ -56,4 +56,10 @@ public class SubscribeController {
     public Page<Subscribe> getPage(@PageableDefault( sort = {"subscribeId"}, direction = Sort.Direction.DESC) Pageable pageable) {
         return this.subscribeService.getSubscribePage(pageable);
     }
+
+    @RequestMapping(value="/getByAccount/{accountId}", method = RequestMethod.GET)
+    public Iterable<Subscribe> getSubscriptionsByLogin(@PathVariable("accountId") Long accountId) {
+        return subscribeService.getSubscribeByAccountId(accountId);
+    }
+
 }

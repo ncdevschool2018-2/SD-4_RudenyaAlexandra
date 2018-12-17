@@ -18,7 +18,6 @@ import {  NotFoundedComponent } from './notFounded/page.component';
 import { LoginActivate } from './loginActivate';
 import { AccountActivate } from './activateAccount';
 
-
 @NgModule({
   declarations: [
     AppComponent, NavbarComponent, NotFoundedComponent
@@ -28,7 +27,7 @@ import { AccountActivate } from './activateAccount';
     AppRoutingModule, ButtonsModule.forRoot(), HttpClientModule,
     LoginModule, MainPageModule, AccountPageModule,
     SigninModule, ProductModule,  BsDropdownModule.forRoot(),
-    CategoryProductModule
+    CategoryProductModule,
   ],
   providers: [
     LoginActivate, AccountActivate,

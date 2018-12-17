@@ -1,5 +1,8 @@
 package com.netcracker.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -19,7 +22,7 @@ public class Subscribe {
     @Column(name = "end_date")
     private Date endDate;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
@@ -92,15 +95,6 @@ public class Subscribe {
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public Subscribe(Date startDate, Date endDate, Account account, Product product, List<Feature> features, boolean status) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.account = account;
-        this.product = product;
-        this.features = features;
-        this.status = status;
     }
 
     @Override

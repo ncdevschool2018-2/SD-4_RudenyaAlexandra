@@ -8,14 +8,15 @@ export class CategoryData implements OnInit, OnDestroy {
     public editCategory: Category = new Category();
     public categoryMas: Category[];
     private subscriptions: Subscription[] = [];
+    isLoad = false;
+
     ngOnInit(): void {
-        this._loadCategory();
+       this._loadCategory();
     }
 
     constructor( private categoryService: CategoryService) {}
 
     public _addCategory(): void {
-        this.editCategory.nameCategory = 'game';
         this.subscriptions.push(this.categoryService.saveCategory(this.editCategory).subscribe(() => {
             this._updateCategory();
             this.refreshCategory();
@@ -37,10 +38,11 @@ export class CategoryData implements OnInit, OnDestroy {
         }));
 
     }
+
     public _loadCategory(): void {
         this.subscriptions.push(this.categoryService.getCategory().subscribe( categories => {
-            this.categoryMas = categories as Category[];
-            console.log(categories);
+            this.categoryMas = categories;
+            this.isLoad = true;
         }));
     }
 

@@ -3,9 +3,13 @@ package com.netcracker.edu.fapi.service.impl;
 import com.netcracker.edu.fapi.entity.SubscribeViewModel;
 import com.netcracker.edu.fapi.service.SubscribeDataService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -48,5 +52,21 @@ public class SubscribeDataServiceImpl implements SubscribeDataService {
     public void deleteSubscribe(Long id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/subscribe/" + id);
+    }
+
+    @Override
+    public List<SubscribeViewModel> getSubscribeByAccountId(Long accountId) {
+        RestTemplate restTemplate = new RestTemplate();
+        SubscribeViewModel[] subscribeModelResponse = restTemplate.getForObject(backendServerUrl + "/api/subscribe/getByAccount/" + accountId, SubscribeViewModel[].class);
+        return subscribeModelResponse == null ? Collections.emptyList() : Arrays.asList(subscribeModelResponse);
+    }
+
+    @Override
+    public RestPageImpl<SubscribeViewModel> getPage(HttpServletRequest request) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.exchange(backendServerUrl + "/api/subscribe/page?" + request.getQueryString(),
+                HttpMethod.GET, null,
+                new ParameterizedTypeReference<RestPageImpl<SubscribeViewModel>>(){})
+                .getBody();
     }
 }

@@ -1,12 +1,13 @@
 import { Feature } from './feature';
 import { Product } from './product';
+import { Account } from './account';
 
 export class Subscribe {
     subscribeId: number;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     product: Product;
     account: Account;
     feature: Feature[];
-    status: number;
+    status: boolean;
 }

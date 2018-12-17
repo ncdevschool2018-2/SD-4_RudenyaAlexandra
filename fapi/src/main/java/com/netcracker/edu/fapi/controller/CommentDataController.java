@@ -2,10 +2,12 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.entity.CommentViewModel;
 import com.netcracker.edu.fapi.service.CommentDataService;
+import com.netcracker.edu.fapi.service.impl.RestPageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -37,5 +39,11 @@ public class CommentDataController {
     public void deleteComment(@PathVariable String id) {
         commentDataService.deleteComment(Long.valueOf(id));
     }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<RestPageImpl<CommentViewModel>> getCommentPage(HttpServletRequest request) {
+        return ResponseEntity.ok(commentDataService.getCommentPage(request));
+    }
+
 
 }

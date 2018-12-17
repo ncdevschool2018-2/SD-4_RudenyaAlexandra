@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,11 +42,21 @@ public class Account {
     private Wallet wallet;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "subscribe_id")
-    private List<Subscribe> subscriptions;
-
+    @JoinColumn(name = "account_id")
+    private List<Subscribe> subscribes;
 
     public Account() {
+    }
+
+    public Account(String lastName, String firstName, LocalDate registrationDate, String imageProfile,
+                   User user, Wallet wallet, List<Subscribe> subscribes) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.registrationDate = registrationDate;
+        this.imageProfile = imageProfile;
+        this.user = user;
+        this.wallet = wallet;
+        this.subscribes = subscribes;
     }
 
     @Override
@@ -60,23 +71,12 @@ public class Account {
                 Objects.equals(imageProfile, account.imageProfile) &&
                 Objects.equals(user, account.user) &&
                 Objects.equals(wallet, account.wallet) &&
-                Objects.equals(subscriptions, account.subscriptions);
+                Objects.equals(subscribes, account.subscribes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, lastName, firstName, registrationDate, imageProfile, user, wallet, subscriptions);
-    }
-
-    public Account(String lastName, String firstName, LocalDate registrationDate, String imageProfile,
-                   User user, Wallet wallet, List<Subscribe> subscriptions) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.registrationDate = registrationDate;
-        this.imageProfile = imageProfile;
-        this.user = user;
-        this.wallet = wallet;
-        this.subscriptions = subscriptions;
+        return Objects.hash(accountId, lastName, firstName, registrationDate, imageProfile, user, wallet, subscribes);
     }
 
     public Long getAccountId() {
@@ -135,11 +135,11 @@ public class Account {
         this.wallet = wallet;
     }
 
-    public List<Subscribe> getSubscriptions() {
-        return subscriptions;
+    public List<Subscribe> getSubscribes() {
+        return subscribes;
     }
 
-    public void setSubscriptions(List<Subscribe> subscriptions) {
-        this.subscriptions = subscriptions;
+    public void setSubscribes(List<Subscribe> subscribes) {
+        this.subscribes = subscribes;
     }
 }

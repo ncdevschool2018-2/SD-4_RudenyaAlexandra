@@ -3,9 +3,13 @@ package com.netcracker.edu.fapi.service.impl;
 import com.netcracker.edu.fapi.entity.AccountViewModel;
 import com.netcracker.edu.fapi.service.AccountDataService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -48,4 +52,15 @@ public class AccountDataServiceImpl implements AccountDataService {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/account/" + id);
     }
+
+    @Override
+    public RestPageImpl<AccountViewModel> getAccountPage(HttpServletRequest request) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.exchange(backendServerUrl + "/api/account/page?" + request.getQueryString(),
+                HttpMethod.GET, null,
+                new ParameterizedTypeReference<RestPageImpl<AccountViewModel>>() {
+                }).getBody();
+    }
+
+
 }

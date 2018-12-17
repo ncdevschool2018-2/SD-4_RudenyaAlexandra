@@ -3,20 +3,42 @@ package com.netcracker.edu.fapi.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.netcracker.edu.fapi.service.ProductDataService;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.sql.Date;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubscribeViewModel {
     private Long subscribeId;
+    @NotBlank
+    @Pattern(regexp="yyyy-MM-dd")
     private Date startDate;
+    @NotBlank
+    @Pattern(regexp="yyyy-MM-dd")
     private Date endDate;
-    private ProductViewModel product;
-    private AccountViewModel account;
-    private List<FeatureViewModel> features;
+    @NotBlank
+    private Object product;
+    @NotBlank
+    private Object account;
+    private List<Object> features;
+    @NotBlank
     private boolean status;
 
     public SubscribeViewModel() {
+    }
+
+    public SubscribeViewModel(Long subscribeId, @NotBlank @Pattern(regexp = "yyyy-MM-dd") Date startDate,
+                              @NotBlank @Pattern(regexp = "yyyy-MM-dd")
+            Date endDate, @NotBlank Object product, @NotBlank Object account,
+                              List<Object> features, @NotBlank boolean status) {
+        this.subscribeId = subscribeId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.product = product;
+        this.account = account;
+        this.features = features;
+        this.status = status;
     }
 
     public Long getSubscribeId() {
@@ -43,27 +65,27 @@ public class SubscribeViewModel {
         this.endDate = endDate;
     }
 
-    public ProductViewModel getProduct() {
+    public Object getProduct() {
         return product;
     }
 
-    public void setProduct(ProductViewModel product) {
+    public void setProduct(Object product) {
         this.product = product;
     }
 
-    public AccountViewModel getAccount() {
+    public Object getAccount() {
         return account;
     }
 
-    public void setAccount(AccountViewModel account) {
+    public void setAccount(Object account) {
         this.account = account;
     }
 
-    public List<FeatureViewModel> getFeatures() {
+    public List<Object> getFeatures() {
         return features;
     }
 
-    public void setFeatures(List<FeatureViewModel> features) {
+    public void setFeatures(List<Object> features) {
         this.features = features;
     }
 

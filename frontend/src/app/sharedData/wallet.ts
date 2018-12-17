@@ -2,12 +2,16 @@ import { OnInit,  OnDestroy } from '@angular/core';
 import { WalletService } from '../service/wallet.service';
 import { Wallet } from '../model/wallet';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { UpdateBalance } from '../model/updateWalletBalance';
 
 export class WalletData implements OnInit, OnDestroy {
 
-    public editWallet: Wallet = new Wallet();
-    public walletMas: Wallet[];
+    editWallet: Wallet = new Wallet();
+    walletMas: Wallet[];
     private subscriptions: Subscription[] = [];
+    isLoad = false;
+    editMode = false;
+    walletByAccounId: Wallet;
 
     ngOnInit(): void {
         this._loadWallet();
@@ -22,25 +26,45 @@ export class WalletData implements OnInit, OnDestroy {
         }));
     }
 
-    private refreshWallet(): void {
+    refreshWallet(): void {
         this.editWallet = new Wallet();
     }
 
-    public _updateWallet(): void {
+     _updateWallet(): void {
         this._loadWallet();
     }
 
-    public _deleteWallet(wallet_id: string): void {
+    _deleteWallet(wallet_id: string): void {
         this.subscriptions.push(this.walletService.deleteWallet(wallet_id).subscribe( () => {
             this._updateWallet();
             this.refreshWallet();
         }));
 
     }
-    public _loadWallet(): void {
+     _loadWallet(): void {
         this.subscriptions.push(this.walletService.getWallet().subscribe( wallets => {
-            this.walletMas = wallets as Wallet[];
-            console.log(wallets);
+            this.walletMas = wallets;
+            this.isLoad = true;
+        }));
+    }
+
+    _getWalletById(id: number): Wallet {
+        let walletById: Wallet;
+        this.subscriptions.push(this.walletService.getWalletById(id).subscribe( wallets => {
+            walletById = wallets;
+        }));
+        return walletById;
+    }
+
+    _getWalletByAcountId(accountId: number) {
+        this.subscriptions.push(this.walletService.getWalletByAccountId(accountId).subscribe( wallets => {
+            this.walletByAccounId = wallets;
+            this.isLoad = true;
+        }));
+    }
+
+    _updateBalance(updateBalance: UpdateBalance) {
+        this.subscriptions.push(this.walletService.updateWalletBalance(updateBalance).subscribe(() => {
         }));
     }
 

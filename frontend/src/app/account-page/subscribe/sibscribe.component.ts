@@ -1,6 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { SubscribeData } from '../../sharedData/subscription';
 import { SubscribeService } from '../../service/subscribe.service';
+import { Subscribe } from 'src/app/model/subscribe';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-subscribe',
@@ -10,10 +14,26 @@ import { SubscribeService } from '../../service/subscribe.service';
 
 export class SubscribeComponent implements OnInit {
 
-    public subscribes = new SubscribeData(this.subscribeService);
+    @Input()
+    accountId;
 
-    constructor(private subscribeService: SubscribeService) {}
+    subscribe = new SubscribeData(this.subscribeService, this.loading);
+    private subscriptions: Subscription[] = [];
+    subscribeByAccountId: Subscribe[];
+
+    constructor(private router: Router, private subscribeService: SubscribeService,
+        private loading: Ng4LoadingSpinnerService) {}
     ngOnInit() {
-        this.subscribes.ngOnInit();
-      }
+        this.loading.show();
+        console.log(this.accountId);
+        this.loadSubscribeByAccountId(this.accountId);
+    }
+
+    loadSubscribeByAccountId(id: number) {
+        // Get data from BillingAccountService
+        this.subscriptions.push(this.subscribeService.getSubscribeByAccountId(id).subscribe(sub => {
+          this.subscribeByAccountId = sub;
+        }));
+    }
+
 }

@@ -3,9 +3,10 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { Comment } from '../../model/comment';
 import { CommentService } from '../../service/comment.service';
 import { Product } from '../../model/product';
-import { ProductService } from '../../service/product.service';
 import { CommentData } from '../../sharedData/comment';
-import { ProductData } from 'src/app/sharedData/product';
+import { SubscribeData } from 'src/app/sharedData/subscription';
+import { SubscribeService } from 'src/app/service/subscribe.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-comment-user',
     templateUrl: 'commentUser.component.html',
@@ -14,12 +15,11 @@ import { ProductData } from 'src/app/sharedData/product';
 
 export class CommentUserComponent implements OnInit, OnDestroy {
 
-    public comments = new CommentData(this.commentService);
-    public products = new ProductData(this.productService);
-
-    public editProduct: Product = new Product();
-    public subscription1: Subscription[] = [];
-    constructor(private commentService: CommentService, private productService: ProductService) {}
+    comments = new CommentData(this.commentService);
+    subscribe = new SubscribeData(this.subscribeService, this.loading);
+    editProduct: Product = new Product();
+    constructor(private commentService: CommentService, private subscribeService: SubscribeService,
+         private loading: Ng4LoadingSpinnerService) {}
 
     ngOnDestroy(): void {
     }

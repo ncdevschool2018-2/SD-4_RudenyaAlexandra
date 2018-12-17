@@ -4,57 +4,75 @@ import { UserService } from '../service/user.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Account } from '../model/account';
 import { Role } from '../model/role';
+import { AuthService } from '../service/auth.service';
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 
 export class UserData implements OnInit, OnDestroy {
 
   passwordRepeat: string;
-  public editMode = false;
-  public editUser =  new User();
-  public userAccount: User[];
+  editMode = false;
+  editUser =  new User();
+  userAccount: User[];
+  userByLogin = new User();
+  isLoad = false;
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+    private loadingService: Ng4LoadingSpinnerService) {
+  }
+
+  ngOnInit() {
+    this._loadUser();
     this.editUser.account = new Account();
     this.editUser.role = new Role();
   }
 
-  ngOnInit() {
-    this.loadUser();
-  }
 
-
-  public _addUser(): void {
+  _addUser(): void {
       this.subscriptions.push(this.userService.saveUser
         (this.editUser).subscribe(() => {
             this._updateUser();
             this.refreshUser();
-        }));
+            this.loadingService.hide();
+    }));
   }
 
-  public _updateUser(): void {
-      this.loadUser();
+   _updateUser(): void {
+      this._loadUser();
   }
 
-  public refreshUser(): void {
+  refreshUser(): void {
       this.editUser = new User();
   }
 
-  public _deleteUser(userId: string): void {
+   _deleteUser(userId: string): void {
     this.subscriptions.push(this.userService.deleteUser(userId).subscribe(() => {
       this._updateUser();
       this.refreshUser();
     }));
   }
 
-  private loadUser(): void {
+  _loadUser(): void {
     // Get data from BillingAccountService
-    this.subscriptions.push(this.userService.getUser().subscribe(accounts => {
-      // Parse json response into local array
-      this.userAccount = accounts as User[];
-      // Check data in console
-      console.log(this.userAccount); // don't use console.log in angular :)
+    this.subscriptions.push(this.userService.getUser().subscribe(users => {
+      this.userAccount = users;
+      this.isLoad = true;
+      this.loadingService.hide();
     }));
+  }
+
+   _getUserByLogin(login: string) {
+    this.subscriptions.push(this.userService.getUserByLogin(login).subscribe( user => {
+        this.userByLogin = user;
+        this.isLoad = true;
+        this.loadingService.hide();
+    }));
+  }
+
+  userIdByLogin(login: string): number {
+    return this.userByLogin.userId;
   }
 
   ngOnDestroy(): void {

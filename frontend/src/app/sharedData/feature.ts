@@ -2,7 +2,7 @@ import { OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Feature } from '../model/feature';
 import { FeatureService } from '../service/feature.service';
-export class SubscribeData implements OnInit, OnDestroy {
+export class FeatureData implements OnInit, OnDestroy {
 
     public editFeature: Feature = new Feature();
     public subscribe: Feature[];

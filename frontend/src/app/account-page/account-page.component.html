@@ -1,17 +1,22 @@
+<ng4-loading-spinner> </ng4-loading-spinner>
 <app-menu-account (linkComponent) = "linkNumber($event)"></app-menu-account>
 <div *ngIf = "( parameter == 'subscription')">
     <app-user-info></app-user-info>
-    <app-subscribe></app-subscribe>
+    <div *ngIf = "this.user.isLoad">
+        <app-subscribe [accountId] = "this.user.userByLogin.userId"></app-subscribe>
+    </div>
 </div>
 <div *ngIf = "( parameter == 'balance')">
-    <app-wallet></app-wallet>
+    <div *ngIf = "this.user.isLoad">
+        <app-wallet [accountId] = "this.user.userByLogin.userId" ></app-wallet>
+    </div>
 </div>
-<div *ngIf = "( parameter == 'comment')">
+<!--<div *ngIf = "( parameter == 'comment')">
     <app-user-info></app-user-info>
     <app-comment-user></app-comment-user>
-</div>
+</div>-->
 <div *ngIf = "( parameter == 'users')">
-    <app-user-account-admin></app-user-account-admin>
+    <app-user-account-admin [users] = "this.user.userAccount" ></app-user-account-admin>
 </div>
 <div *ngIf="( parameter == 'product')">
     <app-add-product></app-add-product>

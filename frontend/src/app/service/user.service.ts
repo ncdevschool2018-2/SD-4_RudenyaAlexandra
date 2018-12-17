@@ -24,6 +24,9 @@ export class UserService {
     }
 
     getUserById(userId: number): Observable<User> {
-        return this.http.get<User>('api/users/' + userId);
+        return this.http.get<User>('/api/users/' + userId);
+    }
+    getUserByLogin(login: string): Observable<User> {
+        return this.http.get<User>('/api/users/get/' + login);
     }
 }

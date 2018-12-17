@@ -8,6 +8,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { Router } from '@angular/router';
 import { Token } from '../model/token';
 import { JwtDecode } from '../model/jwtDecode';
+import { Location } from '@angular/common';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 
 @Component({
@@ -21,29 +23,33 @@ export class LoginComponent implements OnInit {
   isActive = false;
   loginUser: LoginUser = new LoginUser();
   role: string;
-  public userD: JwtDecode;
-  public user = new UserData(this.userService);
+  userD: JwtDecode;
+  user = new UserData(this.userService, this.loadingSpinnerService);
   constructor(private userService: UserService, private authService:
-    AuthService, private tokenStorage: TokenStorage, private router: Router) {}
+    AuthService, private loadingSpinnerService: Ng4LoadingSpinnerService
+    , private tokenStorage: TokenStorage, private router: Router, private location: Location) {}
 
   ngOnInit() {
     this.user.ngOnInit();
   }
 
- public getToken(): void {
+  login(): void {
     this.authService.attempAuth(this.loginUser).subscribe ( authToken => {
       // tslint:disable-next-line:prefer-const
       let token: Token = authToken as Token;
       this.tokenStorage.saveToken(token.token);
       this.userD = this.authService.decodeJwt(token.token);
+      if (this.tokenStorage.getToken() !== null) {
+        window.location.reload();
+      }
     });
 
   }
-  public login() {
+  /*public login() {
     if (this.tokenStorage.getToken() !== null) {
       this.router.navigateByUrl('/account');
       window.location.reload();
     }
-  }
+  }*/
 
 }
